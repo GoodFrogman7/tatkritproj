@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TATKRIT — We Build What Others Can't</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #DC143C;
+  --crimson-deep: #8B0000;
+  --crimson-bright: #FF1744;
+  --crimson-glow: rgba(220,20,60,0.6);
+  --chrome: #C0C0C0;
+  --chrome-bright: #E8E8E8;
+  --chrome-dark: #888;
+  --void: #050508;
+  --void-2: #0a0a0f;
+  --void-3: #0f0f18;
+  --text-main: #F0F0F5;
+  --text-dim: #8888AA;
+  --accent-line: rgba(220,20,60,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--text-main);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--crimson);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: normal;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--crimson);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease;
+  opacity: 0.6;
+}
+body:hover .cursor { opacity: 1; }
+
+/* NOISE TEXTURE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.4;
+}
+
+/* SCANLINES */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 9996;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: linear-gradient(to bottom, rgba(5,5,8,0.98), transparent);
+  border-bottom: 1px solid rgba(220,20,60,0.12);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--text-main);
+  text-decoration: none;
+  position: relative;
+}
+.nav-logo span {
+  color: var(--crimson);
+}
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--crimson), transparent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::before {
+  content: '//';
+  color: var(--crimson);
+  margin-right: 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { color: var(--text-main); }
+.nav-links a:hover::before { opacity: 1; }
+
+.nav-cta {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--crimson);
+  border: 1px solid var(--crimson);
+  padding: 10px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.nav-cta:hover {
+  background: var(--crimson);
+  color: white;
+  box-shadow: 0 0 30px var(--crimson-glow);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 48px 60px;
+}
+
+/* ANIMATED GRID BACKGROUND */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(220,20,60,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,20,60,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* HERO GLOW ORB */
+.hero-glow {
+  position: absolute;
+  right: -200px; top: 50%;
+  transform: translateY(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(220,20,60,0.15) 0%, rgba(139,0,0,0.08) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  left: -100px; bottom: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(220,20,60,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-tag::before {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--crimson);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 12vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.hero-title .line-1 { color: var(--text-main); }
+.hero-title .line-2 {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--crimson);
+  text-shadow: 0 0 60px rgba(220,20,60,0.4);
+}
+.hero-title .line-3 {
+  color: var(--crimson);
+  text-shadow: 0 0 40px var(--crimson-glow), 0 0 80px rgba(220,20,60,0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  max-width: 540px;
+  margin: 32px 0 48px;
+  line-height: 1.6;
+}
+.hero-subtitle strong {
+  color: var(--chrome-bright);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.btn-primary {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: white;
+  background: var(--crimson);
+  padding: 16px 40px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: all 0.25s;
+  box-shadow: 0 0 0 rgba(220,20,60,0);
+}
+.btn-primary:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 40px var(--crimson-glow), 0 0 80px rgba(220,20,60,0.2);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--chrome);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(192,192,192,0.3);
+  transition: all 0.2s;
+}
+.btn-ghost:hover { color: white; border-color: white; }
+.btn-ghost .arrow { transition: transform 0.2s; }
+.btn-ghost:hover .arrow { transform: translateX(6px); }
+
+/* HERO STATS */
+.hero-stats {
+  position: absolute;
+  bottom: 60px; right: 48px;
+  display: flex;
+  gap: 48px;
+  z-index: 2;
+}
+.stat {
+  text-align: right;
+}
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--crimson);
+  line-height: 1;
+  text-shadow: 0 0 30px var(--crimson-glow);
+}
+.stat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* SCROLLING TICKER */
+.ticker {
+  background: var(--crimson);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.ticker::before, .ticker::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 100px;
+  z-index: 2;
+}
+.ticker::before { left: 0; background: linear-gradient(90deg, var(--crimson), transparent); }
+.ticker::after { right: 0; background: linear-gradient(-90deg, var(--crimson), transparent); }
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 25s linear infinite;
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.9);
+  padding: 0 40px;
+}
+.ticker-sep {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.6rem;
+  align-self: center;
+}
+
+/* SECTION SHARED */
+section {
+  padding: 120px 48px;
+  position: relative;
+}
+
+.section-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-tag::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--crimson);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+.section-title em {
+  font-style: normal;
+  color: var(--crimson);
+}
+
+/* SERVICES */
+#services {
+  background: var(--void-2);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 80px;
+  background: rgba(220,20,60,0.1);
+  border: 1px solid rgba(220,20,60,0.15);
+}
+
+.service-card {
+  background: var(--void);
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: none;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(220,20,60,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--crimson);
+  transition: width 0.4s ease;
+}
+.service-card:hover::before { opacity: 1; }
+.service-card:hover::after { width: 100%; }
+.service-card:hover { background: var(--void-3); }
+
+.service-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: rgba(220,20,60,0.08);
+  line-height: 1;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.service-card:hover .service-num { color: rgba(220,20,60,0.15); }
+
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: block;
+  filter: grayscale(0.5);
+  transition: filter 0.3s;
+}
+.service-card:hover .service-icon { filter: grayscale(0); }
+
+.service-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.service-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.service-price {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(220,20,60,0.15);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.price-from {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.price-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--crimson);
+}
+.price-cur {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* HOW WE BUILD */
+#process {
+  background: var(--void);
+  overflow: hidden;
+}
+
+.process-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 80px;
+  align-items: start;
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(220,20,60,0.1);
+  position: relative;
+  transition: all 0.3s;
+}
+.process-step:first-child { border-top: 1px solid rgba(220,20,60,0.1); }
+.process-step:hover { padding-left: 12px; }
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--crimson);
+  line-height: 1;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+.process-step:hover .step-num { opacity: 1; }
+
+.step-content {}
+.step-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.step-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.process-visual {
+  position: sticky;
+  top: 120px;
+}
+
+.terminal-box {
+  background: var(--void-2);
+  border: 1px solid rgba(220,20,60,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.terminal-header {
+  background: rgba(220,20,60,0.08);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(220,20,60,0.15);
+}
+.t-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.t-dot:nth-child(1) { background: #FF5F57; }
+.t-dot:nth-child(2) { background: #FFBD2E; }
+.t-dot:nth-child(3) { background: #28C840; }
+.terminal-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-left: 8px;
+}
+.terminal-body {
+  padding: 24px 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 2;
+}
+.t-line { display: block; }
+.t-cmd { color: var(--crimson); }
+.t-out { color: #4CAF50; }
+.t-out-dim { color: var(--text-dim); }
+.t-special { color: var(--chrome); }
+.t-cursor {
+  display: inline-block;
+  width: 8px; height: 14px;
+  background: var(--crimson);
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* PROJECTS / WORK */
+#work {
+  background: var(--void-2);
+}
+
+.works-intro {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 80px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+
+.works-desc {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+.works-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.filter-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  background: none;
+  cursor: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  color: var(--crimson);
+  border-color: var(--crimson);
+  background: rgba(220,20,60,0.05);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(220,20,60,0.08);
+}
+
+.project-card {
+  background: var(--void);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: none;
+}
+
+.project-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.project-card:hover .project-bg { transform: scale(1.05); }
+
+/* Project background patterns */
+.proj-1 .project-bg { background: linear-gradient(135deg, #0a0a18, #1a0a1a); }
+.proj-2 .project-bg { background: linear-gradient(135deg, #0a1810, #0a0a18); }
+.proj-3 .project-bg { background: linear-gradient(135deg, #180a0a, #0a1018); }
+.proj-4 .project-bg { background: linear-gradient(135deg, #10180a, #0a1810); }
+.proj-5 .project-bg { background: linear-gradient(135deg, #0a0a18, #18100a); }
+.proj-6 .project-bg { background: linear-gradient(135deg, #180a18, #0a0a18); }
+
+.proj-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  opacity: 0.15;
+  transition: all 0.4s;
+}
+.project-card:hover .proj-icon { opacity: 0.05; transform: translate(-50%, -50%) scale(1.5); }
+
+.proj-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(220,20,60,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,20,60,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,5,8,0.95) 0%, rgba(5,5,8,0.3) 50%, transparent 100%);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: translateY(20px);
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+.project-card:hover .project-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.proj-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.proj-tag::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--crimson);
+}
+
+.proj-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.proj-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.proj-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: var(--crimson);
+  border: 1px solid rgba(220,20,60,0.4);
+  padding: 4px 10px;
+  background: rgba(220,20,60,0.05);
+  text-transform: uppercase;
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+/* BIG PROJECT (spans 2 cols) */
+.proj-featured {
+  grid-column: span 2;
+  aspect-ratio: 8/3;
+}
+
+/* PRICING */
+#pricing {
+  background: var(--void);
+  overflow: hidden;
+}
+
+.pricing-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+.pricing-note {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  align-self: end;
+}
+.pricing-note strong { color: var(--text-main); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(220,20,60,0.1);
+}
+
+.price-card {
+  background: var(--void);
+  padding: 48px 36px;
+  position: relative;
+  transition: all 0.3s;
+}
+.price-card.featured {
+  background: linear-gradient(160deg, rgba(220,20,60,0.08), var(--void-3));
+  border-top: 2px solid var(--crimson);
+}
+
+.price-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: white;
+  background: var(--crimson);
+  padding: 4px 12px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 24px;
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+.price-tier {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.price-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.price-amount span {
+  font-size: 1.8rem;
+  color: var(--text-dim);
+}
+.price-card.featured .price-amount { color: var(--crimson); }
+
+.price-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  margin-bottom: 32px;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 40px;
+}
+.price-features li {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.price-features li::before {
+  content: '▸';
+  color: var(--crimson);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+.price-features li.included { color: var(--text-main); }
+
+.btn-price {
+  display: block;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  padding: 14px;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: all 0.25s;
+}
+.btn-price-ghost {
+  color: var(--crimson);
+  border: 1px solid rgba(220,20,60,0.4);
+}
+.btn-price-ghost:hover {
+  background: rgba(220,20,60,0.08);
+}
+.btn-price-solid {
+  background: var(--crimson);
+  color: white;
+}
+.btn-price-solid:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 30px var(--crimson-glow);
+}
+
+/* TEAM */
+#team {
+  background: var(--void-2);
+}
+
+.team-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 80px;
+  margin-top: 80px;
+  align-items: start;
+}
+
+.team-info {}
+.team-count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8rem;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(220,20,60,0.3);
+  margin-bottom: 24px;
+}
+
+.team-description {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.team-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--crimson);
+  border: 1px solid rgba(220,20,60,0.25);
+  padding: 6px 14px;
+  text-transform: uppercase;
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: rgba(220,20,60,0.08);
+}
+
+.team-member {
+  background: var(--void);
+  padding: 28px 20px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.team-member::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: var(--crimson);
+  transition: width 0.3s;
+}
+.team-member:hover::after { width: 80%; }
+.team-member:hover { background: var(--void-3); }
+
+.member-avatar {
+  width: 56px; height: 56px;
+  border-radius: 0;
+  background: linear-gradient(135deg, rgba(220,20,60,0.2), rgba(139,0,0,0.1));
+  border: 1px solid rgba(220,20,60,0.2);
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--crimson);
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+
+.member-role {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.member-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+/* CONTACT */
+#contact {
+  background: var(--void);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-bg-text {
+  position: absolute;
+  bottom: -40px; left: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22vw;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(220,20,60,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 0.95;
+  margin-top: 40px;
+}
+.contact-big .red { color: var(--crimson); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--void-2);
+  border: 1px solid rgba(220,20,60,0.15);
+  border-bottom: 1px solid rgba(220,20,60,0.4);
+  color: var(--text-main);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--crimson);
+  background: rgba(220,20,60,0.03);
+}
+.form-select option { background: var(--void-2); }
+.form-textarea {
+  resize: none;
+  height: 100px;
+  clip-path: none;
+}
+
+.form-submit {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: white;
+  background: var(--crimson);
+  border: none;
+  padding: 18px 40px;
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  cursor: none;
+  transition: all 0.25s;
+  align-self: flex-start;
+}
+.form-submit:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 40px var(--crimson-glow);
+  transform: translateY(-2px);
+}
+
+/* FOOTER */
+footer {
+  background: var(--void-2);
+  border-top: 1px solid rgba(220,20,60,0.15);
+  padding: 60px 48px 40px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-brand {}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+.footer-logo span { color: var(--crimson); }
+.footer-tagline {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.footer-col-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-links a::before {
+  content: '—';
+  font-size: 0.6rem;
+  color: rgba(220,20,60,0.4);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-main); }
+.footer-links a:hover::before { color: var(--crimson); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(220,20,60,0.1);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.footer-legal {
+  display: flex;
+  gap: 32px;
+}
+.footer-legal a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.footer-legal a:hover { color: var(--crimson); }
+
+/* DIAGONAL DIVIDER */
+.diagonal-div {
+  height: 60px;
+  background: var(--void);
+  clip-path: polygon(0 0, 100% 60px, 100% 60px, 0 60px);
+  margin-top: -1px;
+}
+.diagonal-div.inv {
+  background: var(--void-2);
+  clip-path: polygon(0 0, 100% 0, 100% 60px, 0 0);
+}
+
+/* RED LINE ACCENTS */
+.red-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+  height: 1px;
+  width: 60%;
+  opacity: 0.3;
+}
+
+/* GLITCH EFFECT on hover for nav logo */
+@keyframes glitch1 {
+  0%, 100% { clip-path: inset(0 0 100% 0); }
+  20% { clip-path: inset(0 0 70% 0); transform: translate(-2px, 0); }
+  40% { clip-path: inset(30% 0 40% 0); transform: translate(2px, 0); }
+  60% { clip-path: inset(60% 0 10% 0); transform: translate(-2px, 0); }
+  80% { clip-path: inset(80% 0 0% 0); transform: translate(0, 0); }
+}
+
+.nav-logo:hover::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--crimson-bright);
+  animation: glitch1 0.3s steps(1) forwards;
+}
+
+/* SCROLL PROGRESS BAR */
+.scroll-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--crimson);
+  z-index: 10000;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  box-shadow: 0 0 8px var(--crimson);
+}
+
+/* VERTICAL SIDE TEXT */
+.side-text {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  color: rgba(220,20,60,0.4);
+  text-transform: uppercase;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ANIMATIONS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(220,20,60,0.2);
+  background: rgba(220,20,60,0.04);
+  padding: 16px 24px;
+  margin-top: 24px;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.highlight-box .hl-icon { color: var(--crimson); font-size: 1.4rem; }
+.highlight-box .hl-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+.highlight-box .hl-text strong { color: var(--text-main); display: block; }
+
+/* MOBILE BASIC */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-stats { position: relative; bottom: auto; right: auto; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
+  .stat { text-align: left; }
+  .services-grid, .projects-grid, .pricing-grid, .team-grid { grid-template-columns: 1fr; }
+  .proj-featured { grid-column: span 1; aspect-ratio: 4/3; }
+  .process-layout, .works-intro, .pricing-header, .contact-layout, .team-layout, .footer-top { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .side-text { display: none; }
+  .hero-grid { background-size: 30px 30px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- SIDE TEXT -->
+<div class="side-text">TATKRIT.COM &nbsp;///&nbsp; BUILD SYSTEM ONLINE</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" data-text="TAT<span>KRIT</span>">TAT<span>KRIT</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Deploy Us →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">EST. 2022 &nbsp;//&nbsp; AI-POWERED BUILD SQUAD &nbsp;//&nbsp; 12+ BUILDERS</div>
+    <h1 class="hero-title">
+      <div class="line-1">WE</div>
+      <div class="line-2">BUILD</div>
+      <div class="line-3">FUTURES</div>
+    </h1>
+    <p class="hero-subtitle">
+      <strong>Your entire digital business, built and automated.</strong> Websites, WhatsApp bots, e-commerce, booking systems — we deploy the full stack so your café, store, or clinic can run itself.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">
+        <span>See Our Work</span>
+        <span>→</span>
+      </a>
+      <a href="#contact" class="btn-ghost">
+        Start Your Project <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="highlight-box" style="margin-top:40px;">
+      <span class="hl-icon">🏛️</span>
+      <span class="hl-text">
+        <strong>Government-Grade Delivery</strong>
+        Trusted for IIIT & Hospital projects. Enterprise quality, startup speed.
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Projects Deployed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12</div>
+      <div class="stat-label">AI-Augmented Builders</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Verticals Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <!-- Doubled for seamless loop -->
+    <span class="ticker-item">WEBSITE DESIGN</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">WHATSAPP CHATBOTS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">BUSINESS AUTOMATION</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">E-COMMERCE STORES</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">BOOKING SYSTEMS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GOVERNMENT PORTALS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">AI INTEGRATION</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">CAFES & RESTAURANTS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">CLOTHING STORES</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">LOCAL BUSINESSES</span><span class="ticker-sep">◆</span>
+    <!-- Repeat -->
+    <span class="ticker-item">WEBSITE DESIGN</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">WHATSAPP CHATBOTS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">BUSINESS AUTOMATION</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">E-COMMERCE STORES</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">BOOKING SYSTEMS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GOVERNMENT PORTALS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">AI INTEGRATION</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">CAFES & RESTAURANTS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">CLOTHING STORES</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">LOCAL BUSINESSES</span><span class="ticker-sep">◆</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What We Deploy</div>
+  <h2 class="section-title">FULL-STACK<br><em>DIGITAL ARSENAL</em></h2>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <span class="service-icon">🌐</span>
+      <div class="service-name">Custom Websites</div>
+      <p class="service-desc">Blazing-fast, mobile-first, SEO-optimised websites for cafés, restaurants, clinics, and clothing stores. Not templates — built to convert.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹8K</span>
+        <span class="price-cur">/ one-time</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <span class="service-icon">💬</span>
+      <div class="service-name">WhatsApp AI Chatbot</div>
+      <p class="service-desc">24/7 automated customer service, order intake, menu queries, and booking — all inside WhatsApp. Your business never sleeps again.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹5K</span>
+        <span class="price-cur">/ setup</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <span class="service-icon">🛒</span>
+      <div class="service-name">E-Commerce Store</div>
+      <p class="service-desc">Full online store with product catalog, payments (UPI, cards, COD), inventory management, and order tracking. Sell anywhere, anytime.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹15K</span>
+        <span class="price-cur">/ one-time</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <span class="service-icon">📅</span>
+      <div class="service-name">Booking & Reservation</div>
+      <p class="service-desc">Online booking systems for restaurants, salons, clinics — automated confirmations, reminders, and staff scheduling. Zero no-shows.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹6K</span>
+        <span class="price-cur">/ module</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">05</div>
+      <span class="service-icon">⚙️</span>
+      <div class="service-name">Business Automation</div>
+      <p class="service-desc">Automate your invoicing, WhatsApp follow-ups, email sequences, review collection, and social media posting. Work less, grow more.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹4K</span>
+        <span class="price-cur">/ workflow</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">06</div>
+      <span class="service-icon">🏛️</span>
+      <div class="service-name">Enterprise & Gov Portals</div>
+      <p class="service-desc">Secure, scalable portals for institutions, hospitals, and government bodies. IIIT deployments, hospital management systems, and citizen portals.</p>
+      <div class="service-price">
+        <span class="price-from">CUSTOM</span>
+        <span class="price-val">QUOTE</span>
+        <span class="price-cur">/ project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-tag">How We Operate</div>
+  <h2 class="section-title">BUILT<br><em>DIFFERENT</em></h2>
+
+  <div class="process-layout">
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Recon & Brief</div>
+          <p class="step-desc">We deep-dive into your business, your customers, and your goals. No generic questionnaires — a real conversation to understand exactly what you need.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Architecture Design</div>
+          <p class="step-desc">Our AI-augmented team maps out your entire digital stack — website, chatbot, automation flows, integrations. You see the blueprint before we write a line of code.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Rapid Build</div>
+          <p class="step-desc">12+ builders working in parallel with AI tools means we move 10x faster than traditional agencies — and at a fraction of the cost. Turnaround in days, not months.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Test & Launch</div>
+          <p class="step-desc">Rigorous QA across devices, browsers, and load conditions. We don't push live until it's bulletproof. Then we launch — with a war-room mentality.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Ongoing Support</div>
+          <p class="step-desc">We stay with you. Updates, new features, performance monitoring — your digital infrastructure is always evolving with your business.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-visual fade-up">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="terminal-title">tatkrit_build_engine.sh</div>
+        </div>
+        <div class="terminal-body">
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-special">tatkrit init --project</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Brief received & analyzed</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Tech stack selected</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-special">deploy --stack website+bot</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Domain configured</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">WhatsApp API connected</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Payment gateway live</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Booking system active</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-special">automate --workflows all</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Follow-up bot: running</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Review collection: armed</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-out-dim">STATUS: </span><span class="t-out">LIVE 🚀</span></span>
+          <span class="t-line"><span class="t-out-dim">BUILD TIME: </span><span class="t-special">3–7 days</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-cursor"></span></span>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; padding:24px; border:1px solid rgba(220,20,60,0.15); background:rgba(220,20,60,0.03);">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--crimson);text-transform:uppercase;margin-bottom:16px;">Why We're Different</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            AI-augmented development = 10× faster build cycles
+          </div>
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            12+ specialists working in parallel on your project
+          </div>
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            Government-grade quality at SME-friendly pricing
+          </div>
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            Full stack under one roof — no juggling vendors
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PROJECTS -->
+<section id="work">
+  <div class="section-tag">Portfolio</div>
+  <h2 class="section-title">OUR<br><em>DEPLOYMENTS</em></h2>
+
+  <div class="works-intro">
+    <p class="works-desc">From government-grade IIIT portals and hospital management systems to neighbourhood café websites and AI chatbots — we build with the same ruthless precision across every sector. Every project below is live, battle-tested, and generating results.</p>
+    <div class="works-filter">
+      <button class="filter-btn active">ALL</button>
+      <button class="filter-btn">GOVERNMENT</button>
+      <button class="filter-btn">RESTAURANT</button>
+      <button class="filter-btn">E-COMMERCE</button>
+      <button class="filter-btn">AUTOMATION</button>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card proj-1 proj-featured fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🏫</span>
+      <div class="proj-badge">GOVERNMENT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Institutional Portal</div>
+        <div class="proj-name">IIIT Institutional Website</div>
+        <p class="proj-desc">Full institutional portal for a government IIIT — student portal, faculty management, admissions system, and public-facing website. Enterprise-grade security & performance.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-2 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🏥</span>
+      <div class="proj-badge">GOVERNMENT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Healthcare Portal</div>
+        <div class="proj-name">Hospital Management System</div>
+        <p class="proj-desc">Patient registration, appointment booking, doctor dashboard, and billing — built for a government hospital.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-3 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">☕</span>
+      <div class="proj-badge">RESTAURANT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">F&B + Automation</div>
+        <div class="proj-name">Café Full-Stack Build</div>
+        <p class="proj-desc">Menu website, online ordering, WhatsApp chatbot for orders, and Google Review automation.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-4 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">👗</span>
+      <div class="proj-badge">E-COMMERCE</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Retail Store</div>
+        <div class="proj-name">Clothing Store Online Shop</div>
+        <p class="proj-desc">Full Shopify-alternative e-commerce with product catalog, UPI payments, and WhatsApp order notifications.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-5 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🤖</span>
+      <div class="proj-badge">AUTOMATION</div>
+      <div class="project-overlay">
+        <div class="proj-tag">AI Chatbot</div>
+        <div class="proj-name">Restaurant WhatsApp Bot</div>
+        <p class="proj-desc">AI chatbot handling 200+ daily queries — menu, orders, reservations, and feedback collection, fully automated.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-6 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">💈</span>
+      <div class="proj-badge">LOCAL BIZ</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Booking System</div>
+        <div class="proj-name">Salon Booking Platform</div>
+        <p class="proj-desc">Online appointment system with WhatsApp reminders, stylist calendar management, and payment integration.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-1 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🏪</span>
+      <div class="proj-badge">RETAIL</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Local Business</div>
+        <div class="proj-name">General Store Digital Pivot</div>
+        <p class="proj-desc">Full digital transformation — website, WhatsApp ordering, inventory tracking, and delivery management.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-2 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🍽️</span>
+      <div class="proj-badge">RESTAURANT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Restaurant Tech</div>
+        <div class="proj-name">Fine Dining Digital Suite</div>
+        <p class="proj-desc">QR menu system, reservation platform, customer loyalty automation, and kitchen display integration.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-3 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🔧</span>
+      <div class="proj-badge">AUTOMATION</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Workflow Engine</div>
+        <div class="proj-name">Multi-Branch Ops Automation</div>
+        <p class="proj-desc">Centralized dashboard for multi-location SME — automated reporting, staff comms, and customer follow-ups.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-tag">Investment</div>
+  <h2 class="section-title">TRANSPARENT<br><em>PRICING</em></h2>
+
+  <div class="pricing-header">
+    <div></div>
+    <p class="pricing-note">
+      No hidden fees. No agency markup. <strong>Fiverr freelancers charge ₹4K–₹12K for a basic chatbot, and ₹6K–₹40K for a restaurant website.</strong> We deliver the complete digital stack — website + chatbot + automation + support — at honest pricing that makes sense for local businesses.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card fade-up">
+      <div class="price-tier">Starter</div>
+      <div class="price-amount"><span>₹</span>8,999</div>
+      <div class="price-sub">/ one-time payment</div>
+      <ul class="price-features">
+        <li class="included">Custom Website (5 pages)</li>
+        <li class="included">Mobile Responsive</li>
+        <li class="included">Google Maps Integration</li>
+        <li class="included">Basic WhatsApp Button</li>
+        <li>Chatbot Automation</li>
+        <li>Online Ordering</li>
+        <li>Priority Support</li>
+      </ul>
+      <a href="#contact" class="btn-price btn-price-ghost">Get Started</a>
+    </div>
+
+    <div class="price-card featured fade-up">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Business</div>
+      <div class="price-amount"><span>₹</span>24,999</div>
+      <div class="price-sub">/ one-time payment</div>
+      <ul class="price-features">
+        <li class="included">Custom Website (10+ pages)</li>
+        <li class="included">WhatsApp AI Chatbot</li>
+        <li class="included">Online Menu / Catalog</li>
+        <li class="included">Booking / Order System</li>
+        <li class="included">Payment Gateway (UPI+Cards)</li>
+        <li class="included">Automation Workflows (3)</li>
+        <li>Enterprise SLA</li>
+      </ul>
+      <a href="#contact" class="btn-price btn-price-solid">Deploy Now</a>
+    </div>
+
+    <div class="price-card fade-up">
+      <div class="price-tier">Full Armory</div>
+      <div class="price-amount"><span>₹</span>49,999</div>
+      <div class="price-sub">/ one-time + 3 months support</div>
+      <ul class="price-features">
+        <li class="included">Everything in Business</li>
+        <li class="included">E-Commerce Store</li>
+        <li class="included">Custom AI Chatbot (trained)</li>
+        <li class="included">Unlimited Automation Flows</li>
+        <li class="included">CRM Dashboard</li>
+        <li class="included">SEO + Performance Setup</li>
+        <li class="included">3-Month Dedicated Support</li>
+      </ul>
+      <a href="#contact" class="btn-price btn-price-ghost">Get Quote</a>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:32px;border:1px solid rgba(220,20,60,0.15);background:rgba(220,20,60,0.03);display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--crimson);text-transform:uppercase;margin-bottom:8px;">Government & Institutional Projects</div>
+      <div style="font-size:1rem;color:var(--text-dim);line-height:1.7;">Large-scale portals, hospital systems, and institutional platforms are scoped individually. We've delivered for IIIT campuses and government hospitals. <strong style="color:var(--text-main);">Contact us for a custom proposal.</strong></div>
+    </div>
+    <a href="#contact" class="btn-primary" style="flex-shrink:0;">Request Proposal →</a>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-tag">The Squad</div>
+  <h2 class="section-title">12 BUILDERS.<br><em>ONE MISSION.</em></h2>
+
+  <div class="team-layout">
+    <div class="team-info fade-up">
+      <div class="team-count">12+</div>
+      <p class="team-description">
+        We're not a freelancer marketplace or a slow agency. Tatkrit is a tight squad of builders — designers, developers, AI specialists, and automation engineers — working in parallel with AI tools to deliver what used to take months, in days.
+      </p>
+      <p class="team-description">
+        Every team member is a specialist in their domain, and every project gets the full squad's attention.
+      </p>
+      <div class="team-tags">
+        <span class="team-tag">UI/UX Design</span>
+        <span class="team-tag">Full-Stack Dev</span>
+        <span class="team-tag">AI Engineers</span>
+        <span class="team-tag">Automation</span>
+        <span class="team-tag">DevOps</span>
+        <span class="team-tag">WhatsApp API</span>
+        <span class="team-tag">E-Commerce</span>
+        <span class="team-tag">QA Testing</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="team-grid fade-up">
+        <div class="team-member">
+          <div class="member-avatar">TK</div>
+          <div class="member-role">Founder / Lead</div>
+          <div class="member-name">BUILD LEAD</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">UI</div>
+          <div class="member-role">Design</div>
+          <div class="member-name">UI/UX LEAD</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">BE</div>
+          <div class="member-role">Engineering</div>
+          <div class="member-name">BACKEND DEV</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">FE</div>
+          <div class="member-role">Engineering</div>
+          <div class="member-name">FRONTEND DEV</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">AI</div>
+          <div class="member-role">AI / ML</div>
+          <div class="member-name">AI ENGINEER</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">WA</div>
+          <div class="member-role">Automation</div>
+          <div class="member-name">BOT BUILDER</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">EC</div>
+          <div class="member-role">E-Commerce</div>
+          <div class="member-name">SHOP EXPERT</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">QA</div>
+          <div class="member-role">Quality</div>
+          <div class="member-name">QA ENGINEER</div>
+        </div>
+      </div>
+
+      <div style="margin-top:2px;padding:28px 32px;background:var(--void-3);border-left:2px solid var(--crimson);display:flex;align-items:center;gap:20px;">
+        <span style="font-size:2rem;">⚡</span>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;color:var(--text-main);">AI-AUGMENTED WORKFLOW</div>
+          <div style="font-size:0.9rem;color:var(--text-dim);">Every builder uses AI tools to work 10× faster without compromising quality. Your competitor's agency needs 3 months. We need 3–7 days.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg-text">BUILD</div>
+
+  <div class="section-tag">Start Building</div>
+
+  <div class="contact-layout">
+    <div>
+      <h2 class="section-title">LET'S<br><em>DEPLOY</em><br>YOURS</h2>
+      <div class="contact-big">
+        <div>YOUR</div>
+        <div class="red">BUSINESS</div>
+        <div>DESERVES</div>
+        <div>BETTER</div>
+        <div>SOFTWARE.</div>
+      </div>
+
+      <div style="margin-top:40px;display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="color:var(--crimson);font-size:1.3rem;">📱</span>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">WhatsApp Direct</div>
+            <div style="font-size:1rem;color:var(--text-main);font-weight:600;">+91 XXXXX XXXXX</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="color:var(--crimson);font-size:1.3rem;">📧</span>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">Email</div>
+            <div style="font-size:1rem;color:var(--text-main);font-weight:600;">build@tatkrit.com</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="color:var(--crimson);font-size:1.3rem;">🌐</span>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">Response Time</div>
+            <div style="font-size:1rem;color:var(--text-main);font-weight:600;">Within 4 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Rahul / Priya">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Business Name</label>
+            <input type="text" class="form-input" placeholder="Your Business">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">WhatsApp Number</label>
+            <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Business Type</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select type</option>
+              <option>Café / Restaurant</option>
+              <option>Clothing Store</option>
+              <option>Salon / Spa</option>
+              <option>Clinic / Hospital</option>
+              <option>Government / Institution</option>
+              <option>General Retail</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What Do You Need?</label>
+          <select class="form-select">
+            <option value="" disabled selected>Select service</option>
+            <option>Website Design</option>
+            <option>WhatsApp Chatbot</option>
+            <option>E-Commerce Store</option>
+            <option>Business Automation</option>
+            <option>Full Business Stack</option>
+            <option>Enterprise / Government Portal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Us More</label>
+          <textarea class="form-textarea" placeholder="What's your business, what problem are you trying to solve, and when do you need it?"></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit(event)">DEPLOY REQUEST →</button>
+        <div id="form-success" style="display:none;font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:#4CAF50;letter-spacing:0.1em;padding:16px;border:1px solid rgba(76,175,80,0.3);background:rgba(76,175,80,0.05);">
+          ✓ REQUEST RECEIVED — WE'LL HIT YOUR WHATSAPP WITHIN 4 HOURS.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">TAT<span>KRIT</span></div>
+      <p class="footer-tagline">
+        AI-POWERED BUILD SQUAD.<br>
+        WE BUILD WHAT OTHERS CAN'T.<br>
+        FAST. SHARP. PERMANENT.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Website Design</a></li>
+        <li><a href="#services">WhatsApp Chatbots</a></li>
+        <li><a href="#services">E-Commerce</a></li>
+        <li><a href="#services">Booking Systems</a></li>
+        <li><a href="#services">Automation</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#team">The Team</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">We Serve</div>
+      <ul class="footer-links">
+        <li><a href="#">Cafés & Restaurants</a></li>
+        <li><a href="#">Clothing Stores</a></li>
+        <li><a href="#">Salons & Spas</a></li>
+        <li><a href="#">Clinics & Hospitals</a></li>
+        <li><a href="#">Government Bodies</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 TATKRIT. ALL RIGHTS RESERVED. BUILT WITH AI. DELIVERED WITH PRECISION.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">WhatsApp Us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// CUSTOM CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .service-card, .project-card, .team-member').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+    ring.style.width = '56px';
+    ring.style.height = '56px';
+    ring.style.borderColor = 'var(--crimson-bright)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '12px';
+    cursor.style.height = '12px';
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+    ring.style.borderColor = 'var(--crimson)';
+  });
+});
+
+// SCROLL PROGRESS BAR
+const scrollBar = document.getElementById('scrollBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollTop / docHeight;
+  scrollBar.style.transform = `scaleX(${progress})`;
+});
+
+// FADE-IN ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.dataset.delay = (i % 3) * 100;
+  observer.observe(el);
+});
+
+// FILTER BUTTONS
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// FORM SUBMIT
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = 'SENDING...';
+  setTimeout(() => {
+    btn.textContent = '✓ DEPLOYED';
+    btn.style.background = '#1a6b1a';
+    document.getElementById('form-success').style.display = 'block';
+  }, 1200);
+}
+
+// PARALLAX on hero glow
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const glow = document.querySelector('.hero-glow');
+  if (glow) glow.style.transform = `translateY(calc(-50% + ${scrolled * 0.3}px))`;
+});
+
+// COUNTER ANIMATION for stats
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const target = parseInt(el.textContent);
+    const suffix = el.textContent.replace(/[0-9]/g, '');
+    if (isNaN(target)) return;
+    let current = 0;
+    const increment = target / 40;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current) + suffix;
+      }
+    }, 30);
+  });
+}
+
+// Trigger counter when hero is visible
+const heroObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    setTimeout(animateCounters, 800);
+    heroObserver.disconnect();
+  }
+}, { threshold: 0.3 });
+heroObserver.observe(document.querySelector('.hero'));
+
+// GLITCH effect on title periodically
+function glitchTitle() {
+  const lines = document.querySelectorAll('.hero-title .line-2, .hero-title .line-3');
+  lines.forEach(line => {
+    line.style.transform = `translateX(${(Math.random() - 0.5) * 6}px)`;
+    setTimeout(() => { line.style.transform = 'translateX(0)'; }, 80);
+  });
+}
+setInterval(glitchTitle, 4000);
+</script>
+</body>
+</html>
