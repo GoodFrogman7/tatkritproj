@@ -1,0 +1,13 @@
+# Netlify — static site + form handling
+# Connect this repo at https://app.netlify.com — your site can stay on tatkritsolutions.netlify.app
+
+[build]
+  publish = "."
+  command = "npm run build"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

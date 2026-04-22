@@ -1,0 +1,10 @@
+{
+  "name": "tatkrit-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TATKRIT marketing site — static HTML, Netlify Forms for leads",
+  "scripts": {
+    "build": "node -e \"console.log('static publish')\"",
+    "dev": "npx --yes serve . -l 8765"
+  }
+}

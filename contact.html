@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — TATKRIT</title>
+<meta name="description" content="Reach TATKRIT for builds, pilots, and investor conversations. WhatsApp +91 95171 55035.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #DC143C;
+  --crimson-bright: #FF1744;
+  --void: #050508;
+  --void-2: #0a0a0f;
+  --void-3: #0f0f18;
+  --text-main: #F0F0F5;
+  --text-dim: #8888AA;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--void);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  border-bottom: 1px solid rgba(220,20,60,0.12);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--text-main);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--crimson); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--crimson); }
+.wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 100px; }
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+h1 em { color: var(--crimson); font-style: normal; }
+.lead {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.contact-strip {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding: 24px;
+  border: 1px solid rgba(220,20,60,0.2);
+  background: rgba(220,20,60,0.04);
+}
+.strip-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.strip-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  min-width: 100px;
+}
+.strip-val a {
+  color: var(--text-main);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(220,20,60,0.35);
+}
+.strip-val a:hover { color: var(--crimson-bright); }
+form[name="contact"] {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--void-3);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-main);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(220,20,60,0.5);
+}
+textarea { min-height: 140px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+button[type="submit"] {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.15em;
+  font-size: 1.1rem;
+  padding: 16px 28px;
+  background: var(--crimson);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+button[type="submit"]:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 28px rgba(220,20,60,0.35);
+}
+.success {
+  padding: 20px;
+  border: 1px solid rgba(76,175,80,0.35);
+  background: rgba(76,175,80,0.06);
+  color: #81c784;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  display: none;
+}
+.success.show { display: block; }
+.note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 24px;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  nav { flex-direction: column; gap: 16px; }
+  .row2 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">TAT<span>KRIT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+  <h1>CONTACT<br><em>TATKRIT</em></h1>
+  <p class="lead">For client work, pilots, and investor conversations. Submissions are stored securely when this site is deployed on Netlify — you will see leads in the Netlify dashboard under Forms.</p>
+
+  <div id="success-banner" class="success">
+    ✓ Message received. We typically respond on WhatsApp within 4 hours.
+  </div>
+
+  <div class="contact-strip">
+    <div class="strip-row">
+      <span class="strip-label">WhatsApp</span>
+      <span class="strip-val"><a href="https://wa.me/919517155035" target="_blank" rel="noopener noreferrer">+91 95171 55035</a></span>
+    </div>
+    <div class="strip-row">
+      <span class="strip-label">Email</span>
+      <span class="strip-val"><a href="mailto:build@tatkrit.com">build@tatkrit.com</a></span>
+    </div>
+    <div class="strip-row">
+      <span class="strip-label">Live work</span>
+      <span class="strip-val"><a href="index.html#work">Portfolio &amp; deployments</a></span>
+    </div>
+  </div>
+
+  <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="contact.html?success=1">
+    <input type="hidden" name="form-name" value="contact">
+    <p class="hp"><label>Leave empty: <input name="bot-field"></label></p>
+
+    <div class="row2">
+      <div>
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" required placeholder="Full name" autocomplete="name">
+      </div>
+      <div>
+        <label for="company">Business / org</label>
+        <input id="company" name="company" type="text" placeholder="Company or project name" autocomplete="organization">
+      </div>
+    </div>
+
+    <div class="row2">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
+      </div>
+      <div>
+        <label for="phone">WhatsApp / phone</label>
+        <input id="phone" name="phone" type="tel" placeholder="+91 95171 55035" autocomplete="tel">
+      </div>
+    </div>
+
+    <div>
+      <label for="role">You are a</label>
+      <select id="role" name="role" required>
+        <option value="" disabled selected>Select…</option>
+        <option>Founder / business owner</option>
+        <option>Investor / fund</option>
+        <option>Government / institution</option>
+        <option>Agency partner</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="need">What do you need?</label>
+      <select id="need" name="need" required>
+        <option value="" disabled selected>Select…</option>
+        <option>Website &amp; brand presence</option>
+        <option>WhatsApp / automation</option>
+        <option>E-commerce</option>
+        <option>Government / hospital / portal</option>
+        <option>Full stack engagement</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="message">Project details</label>
+      <textarea id="message" name="message" required placeholder="Timeline, budget band, and what success looks like."></textarea>
+    </div>
+
+    <button type="submit">Send message →</button>
+  </form>
+
+  <p class="note">By sending this form you agree to be contacted about your request. Hosted on Netlify: form data appears in Site settings → Forms. For a full database export or CRM hook, we can add Supabase or Zapier in a follow-up.</p>
+</div>
+
+<script>
+  if (window.location.search.indexOf('success=1') !== -1) {
+    var b = document.getElementById('success-banner');
+    b.style.display = 'block';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+DEPLOYING TATKRIT (FREE TIERS — NO PAYWALL FOR A BASIC SITE)
+============================================================
+
+You already use Netlify (tatkritsolutions.netlify.app). This repo is a static site: index.html, contact.html, assets/, js/, netlify.toml.
+
+WHAT YOU GET ON DEPLOY
+----------------------
+• Global CDN hosting (fast anywhere in the world).
+• HTTPS automatically.
+• Netlify Forms: submissions from contact.html appear in Netlify → your site → Forms. That is your “database” for leads until you plug in Supabase or a CRM.
+
+STEPS (GIT + NETLIFY — RECOMMENDED)
+-----------------------------------
+1. Commit and push this repository to GitHub (include assets/ and js/).
+2. In Netlify: Add new site → Import an existing project → pick the repo.
+3. Build settings: publish directory = "." (root). Build command can stay `npm run build` (no-op) or leave empty if Netlify allows.
+4. Attach your custom domain later in Domain settings.
+
+FORMS
+-----
+• The contact page uses `data-netlify="true"`. After the first deploy, open Site settings → Forms → enable spam filtering if you want.
+• If the thank-you URL `contact.html?success=1` does not appear after submit, set a custom success redirect in Netlify Form notifications or use their default confirmation email.
+
+LOCAL PREVIEW
+-------------
+  npm run dev
+or
+  python -m http.server 8765
+
+I CANNOT CREATE A “HOSTED LINK” FROM YOUR MACHINE — only you (or CI) can push to Netlify. After push, your live URL is whatever Netlify shows on the dashboard.
+
+OPTIONAL NEXT: REAL DATABASE
+------------------------------
+• Supabase (Postgres, free tier): add a small serverless function to POST leads from the form into a table — we can do this in a follow-up when you have API keys.

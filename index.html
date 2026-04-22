@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TATKRIT — We Build What Others Can't</title>
+<meta name="description" content="TATKRIT — full-stack digital builds: government portals, hospitals, commerce, WhatsApp automation. Contact +91 95171 55035.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
@@ -670,13 +671,33 @@ section {
   aspect-ratio: 4/3;
   cursor: none;
 }
+a.project-card {
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.project-card:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
 
 .project-bg {
   position: absolute;
   inset: 0;
   transition: transform 0.6s ease;
 }
-.project-card:hover .project-bg { transform: scale(1.05); }
+.project-card:not(.has-cover):hover .project-bg { transform: scale(1.05); }
+.project-card.has-cover .project-bg {
+  transform: scale(1.22) perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+  will-change: transform;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card.has-cover.in-view .project-bg {
+  transform: scale(1) perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+}
+.project-card.has-cover:hover .project-bg {
+  transform: scale(1.08) perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+}
 
 /* Project background patterns */
 .proj-1 .project-bg { background: linear-gradient(135deg, #0a0a18, #1a0a1a); }
@@ -685,6 +706,35 @@ section {
 .proj-4 .project-bg { background: linear-gradient(135deg, #10180a, #0a1810); }
 .proj-5 .project-bg { background: linear-gradient(135deg, #0a0a18, #18100a); }
 .proj-6 .project-bg { background: linear-gradient(135deg, #180a18, #0a0a18); }
+
+/* Live portfolio cover photos */
+.project-bg.proj-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.project-bg.proj-cover-iiitl { background-image: url('assets/portfolio-iiitl.png'); }
+.project-bg.proj-cover-hospital { background-image: url('assets/portfolio-lbrn-hospital.png'); }
+.project-bg.proj-cover-teejays { background-image: url('assets/portfolio-teejays.png'); }
+.project-bg.proj-cover-petperfect { background-image: url('assets/portfolio-petperfect.png'); }
+.project-card.has-cover .proj-icon { opacity: 0.04; }
+
+.proj-live-hint {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--crimson-bright);
+  margin-top: 10px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.proj-live-hint::after {
+  content: '↗';
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
 
 .proj-icon {
   position: absolute;
@@ -902,109 +952,230 @@ section {
   box-shadow: 0 0 30px var(--crimson-glow);
 }
 
-/* TEAM */
-#team {
-  background: var(--void-2);
+.price-usd {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--chrome);
+  margin-top: 8px;
+  opacity: 0.95;
 }
-
-.team-layout {
-  display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 80px;
-  margin-top: 80px;
-  align-items: start;
-}
-
-.team-info {}
-.team-count {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 8rem;
-  line-height: 0.9;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(220,20,60,0.3);
-  margin-bottom: 24px;
-}
-
-.team-description {
-  font-size: 1rem;
+.price-fx-note {
+  font-size: 0.65rem;
   color: var(--text-dim);
-  line-height: 1.8;
-  margin-bottom: 32px;
+  margin-top: 24px;
+  line-height: 1.6;
+  max-width: 720px;
 }
 
-.team-tags {
+/* GOVERNMENT / TRUST SPOTLIGHT */
+#gov-spotlight {
+  padding: 0 48px 80px;
+  background: var(--void);
+}
+.gov-spotlight-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  border: 1px solid rgba(220,20,60,0.25);
+  background: linear-gradient(165deg, rgba(220,20,60,0.06), var(--void-2));
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2px;
+  overflow: hidden;
+}
+.gov-hero-card {
+  position: relative;
+  min-height: 320px;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.gov-hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('assets/portfolio-lbrn-hospital.png') center/cover no-repeat;
+  transform: scale(1.05);
+  transition: transform 0.8s ease;
+}
+.gov-hero-card:hover::before { transform: scale(1.1); }
+.gov-hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(5,5,8,0.92) 0%, rgba(5,5,8,0.45) 55%, transparent 100%);
+}
+.gov-hero-content { position: relative; z-index: 2; }
+.gov-pill {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  color: var(--crimson-bright);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-block;
+  border: 1px solid rgba(220,20,60,0.45);
+  padding: 6px 14px;
+  background: rgba(5,5,8,0.6);
+}
+.gov-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.gov-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+.gov-cta-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  align-items: center;
 }
-.team-tag {
+.gov-cta {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 12px 22px;
+  border: 1px solid rgba(220,20,60,0.5);
+  background: rgba(220,20,60,0.12);
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: all 0.25s;
+}
+.gov-cta:hover {
+  background: rgba(220,20,60,0.22);
+  box-shadow: 0 0 24px rgba(220,20,60,0.25);
+}
+.gov-cta-secondary {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  color: var(--crimson);
-  border: 1px solid rgba(220,20,60,0.25);
-  padding: 6px 14px;
-  text-transform: uppercase;
-  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding-bottom: 2px;
 }
+.gov-cta-secondary:hover { color: var(--crimson-bright); border-color: var(--crimson); }
 
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.gov-side-stack {
+  display: flex;
+  flex-direction: column;
   gap: 2px;
   background: rgba(220,20,60,0.08);
 }
-
-.team-member {
+.gov-side-card {
+  flex: 1;
   background: var(--void);
-  padding: 28px 20px;
-  text-align: center;
-  transition: all 0.3s;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-height: 140px;
   position: relative;
   overflow: hidden;
 }
-.team-member::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 0; height: 2px;
-  background: var(--crimson);
-  transition: width 0.3s;
+.gov-side-card.accent {
+  background: linear-gradient(135deg, var(--void-3), var(--void));
+  border-left: 3px solid var(--crimson);
 }
-.team-member:hover::after { width: 80%; }
-.team-member:hover { background: var(--void-3); }
+.gov-side-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  color: var(--crimson);
+  text-transform: uppercase;
+}
+.gov-side-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+.gov-side-card a {
+  font-size: 0.85rem;
+  color: var(--chrome-bright);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.gov-side-card a:hover { color: var(--crimson-bright); }
 
-.member-avatar {
-  width: 56px; height: 56px;
-  border-radius: 0;
-  background: linear-gradient(135deg, rgba(220,20,60,0.2), rgba(139,0,0,0.1));
+/* IMMERSIVE / AR WHATSAPP LAB */
+#labs {
+  background: var(--void-2);
+  padding: 100px 48px;
+  border-top: 1px solid rgba(220,20,60,0.1);
+}
+.labs-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.labs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1200px;
+}
+.lab-card {
+  position: relative;
   border: 1px solid rgba(220,20,60,0.2);
-  margin: 0 auto 16px;
+  background: var(--void);
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+.lab-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.95;
+  transition: transform 0.6s ease, opacity 0.4s;
+}
+.lab-card:hover video {
+  transform: scale(1.04);
+  opacity: 1;
+}
+.lab-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 24px;
+  background: linear-gradient(transparent, rgba(5,5,8,0.95));
+  pointer-events: none;
+}
+.lab-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+}
+.lab-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.lab-fallback {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  color: var(--crimson);
-  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-}
-
-.member-role {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  color: var(--crimson);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.member-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
+  height: 100%;
+  min-height: 200px;
   color: var(--text-dim);
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 24px;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 /* CONTACT */
@@ -1309,13 +1480,15 @@ footer {
   .hero { padding: 100px 24px 60px; }
   .hero-stats { position: relative; bottom: auto; right: auto; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
   .stat { text-align: left; }
-  .services-grid, .projects-grid, .pricing-grid, .team-grid { grid-template-columns: 1fr; }
+  .services-grid, .projects-grid, .pricing-grid { grid-template-columns: 1fr; }
   .proj-featured { grid-column: span 1; aspect-ratio: 4/3; }
-  .process-layout, .works-intro, .pricing-header, .contact-layout, .team-layout, .footer-top { grid-template-columns: 1fr; }
+  .process-layout, .works-intro, .pricing-header, .contact-layout, .footer-top { grid-template-columns: 1fr; }
+  #gov-spotlight { padding: 0 24px 60px; }
+  .gov-spotlight-inner { grid-template-columns: 1fr; }
+  .labs-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .side-text { display: none; }
   .hero-grid { background-size: 30px 30px; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
 </style>
@@ -1334,15 +1507,15 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" data-text="TAT<span>KRIT</span>">TAT<span>KRIT</span></a>
+  <a href="index.html" class="nav-logo" data-text="TAT<span>KRIT</span>">TAT<span>KRIT</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#team">Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Deploy Us →</a>
+  <a href="contact.html" class="nav-cta">Deploy Us →</a>
 </nav>
 
 <!-- HERO -->
@@ -1352,7 +1525,7 @@ footer {
   <div class="hero-glow-2"></div>
 
   <div class="hero-content">
-    <div class="hero-tag">EST. 2022 &nbsp;//&nbsp; AI-POWERED BUILD SQUAD &nbsp;//&nbsp; 12+ BUILDERS</div>
+    <div class="hero-tag">EST. 2022 &nbsp;//&nbsp; FULL-STACK DEPLOYMENTS &nbsp;//&nbsp; GOV-GRADE + STARTUP SPEED</div>
     <h1 class="hero-title">
       <div class="line-1">WE</div>
       <div class="line-2">BUILD</div>
@@ -1366,7 +1539,7 @@ footer {
         <span>See Our Work</span>
         <span>→</span>
       </a>
-      <a href="#contact" class="btn-ghost">
+      <a href="contact.html" class="btn-ghost">
         Start Your Project <span class="arrow">→</span>
       </a>
     </div>
@@ -1386,12 +1559,41 @@ footer {
       <div class="stat-label">Projects Deployed</div>
     </div>
     <div class="stat">
-      <div class="stat-num">12</div>
-      <div class="stat-label">AI-Augmented Builders</div>
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Live Sectors (Gov · Health · F&B · Product)</div>
     </div>
     <div class="stat">
       <div class="stat-num">5</div>
       <div class="stat-label">Verticals Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNMENT / TRUST — flagship credibility -->
+<section id="gov-spotlight" aria-label="Government and institutional work">
+  <div class="gov-spotlight-inner">
+    <div class="gov-hero-card">
+      <div class="gov-hero-content">
+        <span class="gov-pill">Government of Uttar Pradesh · Live deployment</span>
+        <h3 class="gov-title">Lok Bandhu Hospital — public healthcare portal</h3>
+        <p class="gov-desc">Citizen-facing hospital platform under UP administration: departments, leadership transparency, facilities, and appointments. This is the kind of trust-heavy build investors and buyers look for — not a mockup.</p>
+        <div class="gov-cta-row">
+          <a class="gov-cta" href="https://www.lokbandhuhospital.in/" target="_blank" rel="noopener noreferrer">Open live hospital site →</a>
+          <a class="gov-cta-secondary" href="#work">See it in our portfolio below</a>
+        </div>
+      </div>
+    </div>
+    <div class="gov-side-stack">
+      <div class="gov-side-card accent">
+        <span class="gov-side-label">National institute · IIIT</span>
+        <span class="gov-side-title">IIIT Lucknow institutional web</span>
+        <a href="https://iiitl.ac.in/" target="_blank" rel="noopener noreferrer">iiitl.ac.in ↗</a>
+      </div>
+      <div class="gov-side-card">
+        <span class="gov-side-label">Why this matters</span>
+        <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin:0;">Regulated-sector delivery, accessibility expectations, and uptime discipline — the same rigor we bring to cafés, commerce, and product launches.</p>
+        <a href="contact.html" style="margin-top:8px;">Book a gov / enterprise scoping call →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1587,7 +1789,7 @@ footer {
           </div>
           <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
             <span style="color:var(--crimson);">▸</span>
-            12+ specialists working in parallel on your project
+            Parallel delivery — design, engineering, and automation in one squad
           </div>
           <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
             <span style="color:var(--crimson);">▸</span>
@@ -1598,6 +1800,35 @@ footer {
             Full stack under one roof — no juggling vendors
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMMERSIVE: WhatsApp / AR demos (drop MP4s into assets/videos/) -->
+<section id="labs">
+  <div class="labs-head fade-up">
+    <div class="section-tag">Labs</div>
+    <h2 class="section-title">WHATSAPP · AR ·<br><em>NAVIGATION</em></h2>
+    <p style="font-size:1rem;color:var(--text-dim);line-height:1.75;max-width:640px;margin-top:16px;">Screen captures of conversational flows and spatial navigation experiments we ship for clients. Replace the placeholder files with your two WhatsApp / AR videos — filenames below.</p>
+  </div>
+  <div class="labs-grid">
+    <div class="lab-card fade-up">
+      <video class="lab-vid" muted loop playsinline controls poster="assets/portfolio-teejays.png" preload="metadata">
+        <source src="assets/videos/whatsapp-ar-1.mp4" type="video/mp4">
+      </video>
+      <div class="lab-overlay">
+        <div class="lab-sub">Demo 01 · drop file</div>
+        <div class="lab-title">assets/videos/whatsapp-ar-1.mp4</div>
+      </div>
+    </div>
+    <div class="lab-card fade-up">
+      <video class="lab-vid" muted loop playsinline controls poster="assets/portfolio-petperfect.png" preload="metadata">
+        <source src="assets/videos/whatsapp-ar-2.mp4" type="video/mp4">
+      </video>
+      <div class="lab-overlay">
+        <div class="lab-sub">Demo 02 · drop file</div>
+        <div class="lab-title">assets/videos/whatsapp-ar-2.mp4</div>
       </div>
     </div>
   </div>
@@ -1621,53 +1852,57 @@ footer {
 
   <div class="projects-grid">
 
-    <div class="project-card proj-1 proj-featured fade-up">
-      <div class="project-bg"></div>
+    <a href="https://iiitl.ac.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-1 proj-featured fade-up has-cover" aria-label="IIIT Lucknow — open live site">
+      <div class="project-bg proj-cover proj-cover-iiitl"></div>
       <div class="proj-grid-lines"></div>
       <span class="proj-icon">🏫</span>
       <div class="proj-badge">GOVERNMENT</div>
       <div class="project-overlay">
         <div class="proj-tag">Institutional Portal</div>
-        <div class="proj-name">IIIT Institutional Website</div>
-        <p class="proj-desc">Full institutional portal for a government IIIT — student portal, faculty management, admissions system, and public-facing website. Enterprise-grade security & performance.</p>
+        <div class="proj-name">IIIT Lucknow — Institutional Web</div>
+        <p class="proj-desc">Public IIITL site and institutional presence — admissions, academics, and campus information. Enterprise-grade delivery.</p>
+        <span class="proj-live-hint">Visit iiitl.ac.in</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card proj-2 fade-up">
-      <div class="project-bg"></div>
+    <a href="https://www.lokbandhuhospital.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-2 fade-up has-cover" aria-label="Lok Bandhu Hospital — open live site">
+      <div class="project-bg proj-cover proj-cover-hospital"></div>
       <div class="proj-grid-lines"></div>
       <span class="proj-icon">🏥</span>
       <div class="proj-badge">GOVERNMENT</div>
       <div class="project-overlay">
         <div class="proj-tag">Healthcare Portal</div>
-        <div class="proj-name">Hospital Management System</div>
-        <p class="proj-desc">Patient registration, appointment booking, doctor dashboard, and billing — built for a government hospital.</p>
+        <div class="proj-name">Lok Bandhu Combined Hospital</div>
+        <p class="proj-desc">Government hospital portal — departments, leadership, facilities, and citizen-facing healthcare information.</p>
+        <span class="proj-live-hint">Visit lokbandhuhospital.in</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card proj-3 fade-up">
-      <div class="project-bg"></div>
+    <a href="https://teejayscafe.co.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-3 fade-up has-cover" aria-label="Teejay's Cafe — open live site">
+      <div class="project-bg proj-cover proj-cover-teejays"></div>
       <div class="proj-grid-lines"></div>
       <span class="proj-icon">☕</span>
       <div class="proj-badge">RESTAURANT</div>
       <div class="project-overlay">
-        <div class="proj-tag">F&B + Automation</div>
-        <div class="proj-name">Café Full-Stack Build</div>
-        <p class="proj-desc">Menu website, online ordering, WhatsApp chatbot for orders, and Google Review automation.</p>
+        <div class="proj-tag">F&B + Storefront</div>
+        <div class="proj-name">Teejay's Cafe &amp; Restaurant</div>
+        <p class="proj-desc">Full café &amp; restaurant web presence — hero storefront, navigation, and commerce-ready layout.</p>
+        <span class="proj-live-hint">Visit teejayscafe.co.in</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card proj-4 fade-up">
-      <div class="project-bg"></div>
+    <a href="https://www.petperfect.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-4 fade-up has-cover" aria-label="Pet Perfect — open live site">
+      <div class="project-bg proj-cover proj-cover-petperfect"></div>
       <div class="proj-grid-lines"></div>
-      <span class="proj-icon">👗</span>
-      <div class="proj-badge">E-COMMERCE</div>
+      <span class="proj-icon">🐕</span>
+      <div class="proj-badge">PRODUCT</div>
       <div class="project-overlay">
-        <div class="proj-tag">Retail Store</div>
-        <div class="proj-name">Clothing Store Online Shop</div>
-        <p class="proj-desc">Full Shopify-alternative e-commerce with product catalog, UPI payments, and WhatsApp order notifications.</p>
+        <div class="proj-tag">Health &amp; Lifestyle App</div>
+        <div class="proj-name">Pet Perfect</div>
+        <p class="proj-desc">Dog health and care product — marketing site, app positioning, and trust-led UX for pet owners.</p>
+        <span class="proj-live-hint">Visit petperfect.in</span>
       </div>
-    </div>
+    </a>
 
     <div class="project-card proj-5 fade-up">
       <div class="project-bg"></div>
@@ -1748,6 +1983,7 @@ footer {
     <div class="price-card fade-up">
       <div class="price-tier">Starter</div>
       <div class="price-amount"><span>₹</span>8,999</div>
+      <div class="price-usd">≈ $109 USD</div>
       <div class="price-sub">/ one-time payment</div>
       <ul class="price-features">
         <li class="included">Custom Website (5 pages)</li>
@@ -1758,13 +1994,14 @@ footer {
         <li>Online Ordering</li>
         <li>Priority Support</li>
       </ul>
-      <a href="#contact" class="btn-price btn-price-ghost">Get Started</a>
+      <a href="contact.html" class="btn-price btn-price-ghost">Get Started</a>
     </div>
 
     <div class="price-card featured fade-up">
       <div class="price-badge">Most Popular</div>
       <div class="price-tier">Business</div>
       <div class="price-amount"><span>₹</span>24,999</div>
+      <div class="price-usd">≈ $301 USD</div>
       <div class="price-sub">/ one-time payment</div>
       <ul class="price-features">
         <li class="included">Custom Website (10+ pages)</li>
@@ -1775,12 +2012,13 @@ footer {
         <li class="included">Automation Workflows (3)</li>
         <li>Enterprise SLA</li>
       </ul>
-      <a href="#contact" class="btn-price btn-price-solid">Deploy Now</a>
+      <a href="contact.html" class="btn-price btn-price-solid">Deploy Now</a>
     </div>
 
     <div class="price-card fade-up">
       <div class="price-tier">Full Armory</div>
       <div class="price-amount"><span>₹</span>49,999</div>
+      <div class="price-usd">≈ $602 USD</div>
       <div class="price-sub">/ one-time + 3 months support</div>
       <ul class="price-features">
         <li class="included">Everything in Business</li>
@@ -1791,7 +2029,7 @@ footer {
         <li class="included">SEO + Performance Setup</li>
         <li class="included">3-Month Dedicated Support</li>
       </ul>
-      <a href="#contact" class="btn-price btn-price-ghost">Get Quote</a>
+      <a href="contact.html" class="btn-price btn-price-ghost">Get Quote</a>
     </div>
   </div>
 
@@ -1800,89 +2038,9 @@ footer {
       <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--crimson);text-transform:uppercase;margin-bottom:8px;">Government & Institutional Projects</div>
       <div style="font-size:1rem;color:var(--text-dim);line-height:1.7;">Large-scale portals, hospital systems, and institutional platforms are scoped individually. We've delivered for IIIT campuses and government hospitals. <strong style="color:var(--text-main);">Contact us for a custom proposal.</strong></div>
     </div>
-    <a href="#contact" class="btn-primary" style="flex-shrink:0;">Request Proposal →</a>
+    <a href="contact.html" class="btn-primary" style="flex-shrink:0;">Request Proposal →</a>
   </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="section-tag">The Squad</div>
-  <h2 class="section-title">12 BUILDERS.<br><em>ONE MISSION.</em></h2>
-
-  <div class="team-layout">
-    <div class="team-info fade-up">
-      <div class="team-count">12+</div>
-      <p class="team-description">
-        We're not a freelancer marketplace or a slow agency. Tatkrit is a tight squad of builders — designers, developers, AI specialists, and automation engineers — working in parallel with AI tools to deliver what used to take months, in days.
-      </p>
-      <p class="team-description">
-        Every team member is a specialist in their domain, and every project gets the full squad's attention.
-      </p>
-      <div class="team-tags">
-        <span class="team-tag">UI/UX Design</span>
-        <span class="team-tag">Full-Stack Dev</span>
-        <span class="team-tag">AI Engineers</span>
-        <span class="team-tag">Automation</span>
-        <span class="team-tag">DevOps</span>
-        <span class="team-tag">WhatsApp API</span>
-        <span class="team-tag">E-Commerce</span>
-        <span class="team-tag">QA Testing</span>
-      </div>
-    </div>
-
-    <div>
-      <div class="team-grid fade-up">
-        <div class="team-member">
-          <div class="member-avatar">TK</div>
-          <div class="member-role">Founder / Lead</div>
-          <div class="member-name">BUILD LEAD</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">UI</div>
-          <div class="member-role">Design</div>
-          <div class="member-name">UI/UX LEAD</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">BE</div>
-          <div class="member-role">Engineering</div>
-          <div class="member-name">BACKEND DEV</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">FE</div>
-          <div class="member-role">Engineering</div>
-          <div class="member-name">FRONTEND DEV</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">AI</div>
-          <div class="member-role">AI / ML</div>
-          <div class="member-name">AI ENGINEER</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">WA</div>
-          <div class="member-role">Automation</div>
-          <div class="member-name">BOT BUILDER</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">EC</div>
-          <div class="member-role">E-Commerce</div>
-          <div class="member-name">SHOP EXPERT</div>
-        </div>
-        <div class="team-member">
-          <div class="member-avatar">QA</div>
-          <div class="member-role">Quality</div>
-          <div class="member-name">QA ENGINEER</div>
-        </div>
-      </div>
-
-      <div style="margin-top:2px;padding:28px 32px;background:var(--void-3);border-left:2px solid var(--crimson);display:flex;align-items:center;gap:20px;">
-        <span style="font-size:2rem;">⚡</span>
-        <div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.05em;color:var(--text-main);">AI-AUGMENTED WORKFLOW</div>
-          <div style="font-size:0.9rem;color:var(--text-dim);">Every builder uses AI tools to work 10× faster without compromising quality. Your competitor's agency needs 3 months. We need 3–7 days.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p class="price-fx-note">USD equivalents are approximate for international buyers (indicative rate <strong>₹83 = $1 USD</strong>; adjust quotes with live FX).</p>
 </section>
 
 <!-- CONTACT -->
@@ -1906,8 +2064,8 @@ footer {
         <div style="display:flex;align-items:center;gap:16px;">
           <span style="color:var(--crimson);font-size:1.3rem;">📱</span>
           <div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">WhatsApp Direct</div>
-            <div style="font-size:1rem;color:var(--text-main);font-weight:600;">+91 XXXXX XXXXX</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">WhatsApp &amp; voice</div>
+            <a href="https://wa.me/919517155035" target="_blank" rel="noopener noreferrer" style="font-size:1rem;color:var(--text-main);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(220,20,60,0.4);">+91 95171 55035</a>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
@@ -1928,56 +2086,11 @@ footer {
     </div>
 
     <div>
-      <div class="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" placeholder="Rahul / Priya">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Business Name</label>
-            <input type="text" class="form-input" placeholder="Your Business">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">WhatsApp Number</label>
-            <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Business Type</label>
-            <select class="form-select">
-              <option value="" disabled selected>Select type</option>
-              <option>Café / Restaurant</option>
-              <option>Clothing Store</option>
-              <option>Salon / Spa</option>
-              <option>Clinic / Hospital</option>
-              <option>Government / Institution</option>
-              <option>General Retail</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">What Do You Need?</label>
-          <select class="form-select">
-            <option value="" disabled selected>Select service</option>
-            <option>Website Design</option>
-            <option>WhatsApp Chatbot</option>
-            <option>E-Commerce Store</option>
-            <option>Business Automation</option>
-            <option>Full Business Stack</option>
-            <option>Enterprise / Government Portal</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tell Us More</label>
-          <textarea class="form-textarea" placeholder="What's your business, what problem are you trying to solve, and when do you need it?"></textarea>
-        </div>
-        <button class="form-submit" onclick="handleSubmit(event)">DEPLOY REQUEST →</button>
-        <div id="form-success" style="display:none;font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:#4CAF50;letter-spacing:0.1em;padding:16px;border:1px solid rgba(76,175,80,0.3);background:rgba(76,175,80,0.05);">
-          ✓ REQUEST RECEIVED — WE'LL HIT YOUR WHATSAPP WITHIN 4 HOURS.
-        </div>
+      <div class="contact-form" style="border:1px solid rgba(220,20,60,0.2);padding:32px;background:rgba(220,20,60,0.03);">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--crimson);text-transform:uppercase;margin-bottom:12px;">Lead intake</div>
+        <p style="font-size:1.05rem;color:var(--text-dim);line-height:1.7;margin-bottom:20px;">Investors and clients: use the full contact page — it stores submissions securely (Netlify) so nothing gets lost in WhatsApp noise.</p>
+        <a href="contact.html" class="form-submit" style="display:inline-block;text-align:center;text-decoration:none;line-height:1.3;">Open contact &amp; deploy form →</a>
+        <p style="margin-top:20px;font-size:0.8rem;color:var(--text-dim);font-family:'Share Tech Mono',monospace;">Or message us on WhatsApp: <a href="https://wa.me/919517155035" style="color:var(--crimson-bright);">+91 95171 55035</a></p>
       </div>
     </div>
   </div>
@@ -2010,7 +2123,7 @@ footer {
       <div class="footer-col-title">Company</div>
       <ul class="footer-links">
         <li><a href="#work">Our Work</a></li>
-        <li><a href="#team">The Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#pricing">Pricing</a></li>
       </ul>
@@ -2029,11 +2142,11 @@ footer {
   </div>
 
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 TATKRIT. ALL RIGHTS RESERVED. BUILT WITH AI. DELIVERED WITH PRECISION.</div>
+    <div class="footer-copy">© 2026 TATKRIT. ALL RIGHTS RESERVED. BUILT WITH AI. DELIVERED WITH PRECISION.</div>
     <div class="footer-legal">
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
-      <a href="#">WhatsApp Us</a>
+      <a href="https://wa.me/919517155035" target="_blank" rel="noopener noreferrer">WhatsApp +91 95171 55035</a>
     </div>
   </div>
 </footer>
@@ -2059,7 +2172,7 @@ function animateRing() {
 }
 animateRing();
 
-document.querySelectorAll('a, button, .service-card, .project-card, .team-member').forEach(el => {
+document.querySelectorAll('a, button, .service-card, .project-card, .lab-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.style.width = '20px';
     cursor.style.height = '20px';
@@ -2109,18 +2222,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-// FORM SUBMIT
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target;
-  btn.textContent = 'SENDING...';
-  setTimeout(() => {
-    btn.textContent = '✓ DEPLOYED';
-    btn.style.background = '#1a6b1a';
-    document.getElementById('form-success').style.display = 'block';
-  }, 1200);
-}
-
 // PARALLAX on hero glow
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
@@ -2167,5 +2268,6 @@ function glitchTitle() {
 }
 setInterval(glitchTitle, 4000);
 </script>
+<script src="js/tatkrit.js"></script>
 </body>
 </html>

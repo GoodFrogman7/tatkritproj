@@ -1,0 +1,61 @@
+MASTER TECHNICAL & CREATIVE BRIEF — TATKRIT.COM (LANDO NORRIS–GRADE INTERACTION + YOUR CONSTRAINTS)
+====================================================================================================
+Reference aesthetic: landonorris.com — cinematic vertical storytelling, motion-first UI, dark metallics, kinetic scroll, award-level polish (Awwwards / FWA lineage). Not a template agency site.
+
+BRAND & POSITIONING
+-------------------
+• Name: TATKRIT — “we build what others can’t” — full-stack digital for India + global buyers.
+• Proof: live deployments must stay first-class (IIIT Lucknow, Lok Bandhu Hospital UP, Teejay’s Cafe, Pet Perfect) with honest labels — no fake case studies.
+• Trust anchor: government / hospital work is a headline differentiator — surface it above the fold and in a dedicated trust band, not buried in a grid footnote.
+
+INFORMATION ARCHITECTURE (PAGES)
+--------------------------------
+1. Home: hero → government trust spotlight → ticker → services → process → labs (AR/WhatsApp video) → portfolio → pricing (INR + USD) → contact teaser → footer.
+2. Contact: full lead form, WhatsApp +91 95171 55035, email build@tatkrit.com — submissions via Netlify Forms (upgrade path: Supabase + serverless).
+
+VISUAL SYSTEM
+--------------
+• Base: deep void (#050508–#0f0f18), crimson accent (#DC143C), chrome/silver for secondary text.
+• Typography: compressed display (Bebas Neue–class) + technical mono (Share Tech Mono) + readable UI sans (Rajdhani).
+• Texture: subtle noise / scanlines; optional hex grid parallax — never clutter KPIs.
+• No generic “AI purple gradient” look — stay motorsport / systems / precision.
+
+INTERACTION & MOTION (NON-NEGOTIABLE FOR “LANDO” TARGET)
+---------------------------------------------------------
+• Scroll: section transitions feel choreographed (GSAP ScrollTrigger or equivalent). Sticky chapters optional.
+• Hero: large kinetic type; optional WebGL particle ribbon or wireframe plane responding to pointer + scroll velocity — degrade to CSS on mobile and when prefers-reduced-motion.
+• Cursor: custom cursor with magnetic pull to CTAs; enlarge on interactive targets.
+• Portfolio tiles: live-site cover imagery; scroll-reveal zoom-out on `.project-bg`; hover scale + subtle 3D tilt (perspective, rotateX/Y from pointer — already prototyped in js/tatkrit.js).
+• Labs: autoplay-off video with controls; poster frames; lazy-load sources.
+• Micro-interactions: buttons with press depth; deploy/terminal metaphors for state changes.
+
+CONTENT RULES
+-------------
+• Remove generic “team of 12” roster until real photography exists — replace with capability tags or omit.
+• Pricing: always show INR primary + USD secondary with FX disclaimer (e.g. indicative ₹83 = $1).
+• Contact: one canonical business WhatsApp for sales/support (+91 95171 55035) wired as wa.me links.
+
+TECH STACK (CURRENT → TARGET)
+-----------------------------
+• Now: static HTML/CSS/JS, Netlify Forms, no build step required.
+• Target upgrade path: Vite + vanilla or Astro; GSAP + Lenis (only if perf budget holds); Three.js single hero scene; Netlify Edge Functions for form → Supabase insert.
+
+PERFORMANCE & A11Y
+------------------
+• Budget: LCP < 2.5s on 4G; INP low — if WebGL hurts LCP, move 3D below fold or static poster first frame.
+• prefers-reduced-motion: disable parallax, tilt, and heavy canvas; show static layouts.
+• Focus states visible on all links and form controls.
+
+SUCCESS CRITERIA
+----------------
+• Feels like a performance brand site, not a brochure.
+• Investor can verify gov/health credibility in < 10 seconds.
+• International buyer sees USD pricing without emailing for conversion.
+• Every portfolio “live” tile opens the real external URL in a new tab.
+
+HOSTING
+-------
+• Netlify (or Cloudflare Pages / Vercel static) — free tier sufficient; domain optional.
+• Forms = lead “database” on Netlify; export CSV or Zapier to Sheets/HubSpot when you scale.
+
+END OF BRIEF — USE THIS BLOCK WHEN COMMISSIONING A FULL RE-SKIN OR WHEN BRIEFING A SENIOR FRONT-END + MOTION DESIGNER.
