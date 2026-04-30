@@ -1472,6 +1472,148 @@ footer {
 }
 .highlight-box .hl-text strong { color: var(--text-main); display: block; }
 
+/* PITCH DECK VISUAL OVERRIDE */
+body {
+  background: #050508;
+}
+section {
+  min-height: 92vh;
+  border-top: 1px solid rgba(220,20,60,0.14);
+  border-bottom: 1px solid rgba(220,20,60,0.06);
+  padding-top: 110px;
+  padding-bottom: 90px;
+}
+.section-tag {
+  letter-spacing: 0.34em;
+  font-size: 0.62rem;
+  color: rgba(255, 35, 80, 0.92);
+}
+.section-title {
+  font-size: clamp(3.5rem, 7.6vw, 7.5rem);
+  line-height: 0.88;
+}
+.section-title em {
+  color: #ff1a49;
+  text-shadow: 0 0 22px rgba(255, 26, 73, 0.26);
+}
+nav {
+  background: rgba(5, 5, 8, 0.9);
+  border-bottom-color: rgba(220,20,60,0.2);
+}
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+}
+.hero {
+  min-height: 100vh;
+}
+.hero-grid {
+  opacity: 0.78;
+  background-size: 54px 54px;
+}
+.hero-title {
+  font-size: clamp(5.4rem, 13.5vw, 13.4rem);
+  line-height: 0.84;
+}
+.hero-title .line-1 {
+  color: #f4f4f8;
+  text-shadow: 0 0 24px rgba(255,255,255,0.06);
+}
+.hero-title .line-2 {
+  -webkit-text-stroke: 2px #ff1744;
+  text-shadow: 0 0 22px rgba(255,23,68,0.42);
+}
+.hero-title .line-3 {
+  color: #ff1744;
+  text-shadow: 0 0 40px rgba(255,23,68,0.5);
+}
+.hero-subtitle {
+  font-size: 1.36rem;
+  max-width: 760px;
+}
+.highlight-box {
+  background: rgba(255, 23, 68, 0.06);
+  border-color: rgba(255, 23, 68, 0.35);
+}
+.services-grid,
+.projects-grid,
+.pricing-grid,
+.labs-grid {
+  gap: 1px;
+  background: rgba(220,20,60,0.2);
+}
+.service-card,
+.project-card,
+.price-card,
+.lab-card,
+.gov-side-card {
+  background: #07070d;
+}
+.service-card,
+.project-card,
+.price-card {
+  border: 1px solid rgba(220,20,60,0.16);
+}
+.service-icon {
+  display: none;
+}
+.service-num,
+.step-num {
+  color: rgba(255, 23, 68, 0.95);
+  text-shadow: 0 0 18px rgba(255, 23, 68, 0.35);
+}
+.service-name,
+.proj-name,
+.price-tier,
+.gov-title,
+.lab-title {
+  letter-spacing: 0.08em;
+}
+.service-desc,
+.works-desc,
+.pricing-note,
+.proj-desc,
+.step-desc,
+.gov-desc,
+.price-features li,
+.price-sub {
+  color: #a0a0b8;
+}
+.process-visual {
+  border-left: 1px solid rgba(220,20,60,0.16);
+  padding-left: 26px;
+}
+.terminal-box {
+  border-color: rgba(220,20,60,0.26);
+  box-shadow: 0 0 0 1px rgba(255,23,68,0.1);
+}
+.ticker {
+  background: #0b0b12;
+  border-top: 1px solid rgba(255,23,68,0.35);
+  border-bottom: 1px solid rgba(255,23,68,0.16);
+}
+.ticker-item {
+  color: #ff2f5f;
+}
+.ticker::before,
+.ticker::after {
+  display: none;
+}
+.price-card.featured {
+  box-shadow: 0 0 0 1px rgba(255,23,68,0.32), 0 0 42px rgba(255,23,68,0.12);
+}
+#contact {
+  background: #040408;
+}
+.contact-big {
+  font-size: clamp(4.2rem, 8.5vw, 8rem);
+  letter-spacing: 0.02em;
+}
+footer {
+  border-top: 1px solid rgba(220,20,60,0.2);
+  background: #050508;
+}
+
 /* MOBILE BASIC */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
