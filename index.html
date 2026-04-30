@@ -118,7 +118,7 @@ nav {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .logo-mark {
   width: 34px;
@@ -127,6 +127,10 @@ nav {
   object-fit: cover;
   border: 1px solid rgba(201,255,61,0.4);
   box-shadow: 0 0 18px rgba(201,255,61,0.16);
+}
+.logo-word {
+  display: inline-block;
+  letter-spacing: 0.04em;
 }
 .nav-logo span {
   color: var(--crimson);
@@ -1566,8 +1570,8 @@ nav {
 .projects-grid,
 .pricing-grid,
 .labs-grid {
-  gap: 1px;
-  background: rgba(201,255,61,0.2);
+  gap: 14px;
+  background: transparent;
 }
 .service-card,
 .project-card,
@@ -1577,6 +1581,13 @@ nav {
 .service-card,
 .project-card,
 .price-card { border: 1px solid rgba(201,255,61,0.16); }
+.projects-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+.proj-featured {
+  grid-column: span 1;
+  aspect-ratio: 4/3;
+}
 .service-price { display: none; }
 .service-num,
 .step-num {
@@ -1658,13 +1669,13 @@ footer {
 <div class="scroll-bar" id="scrollBar"></div>
 
 <!-- SIDE TEXT -->
-<div class="side-text">TATKRITHSOLUTIONS.NETLIFY.APP &nbsp;///&nbsp; INVESTOR DECK 2026</div>
+<div class="side-text"></div>
 
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo" data-text="TAT<span>KRITH</span>">
     <img src="assets/tatkrith-logo.png" alt="Tatkrith logo" class="logo-mark">
-    TAT<span>KRITH</span>
+    <span class="logo-word">TAT<span>KRITH</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
@@ -2053,66 +2064,6 @@ footer {
         <span class="proj-live-hint">Visit petperfect.in</span>
       </div>
     </a>
-
-    <div class="project-card proj-5 fade-up">
-      <div class="project-bg"></div>
-      <div class="proj-grid-lines"></div>
-      <span class="proj-icon">🤖</span>
-      <div class="proj-badge">AUTOMATION</div>
-      <div class="project-overlay">
-        <div class="proj-tag">AI Chatbot</div>
-        <div class="proj-name">Restaurant WhatsApp Bot</div>
-        <p class="proj-desc">AI chatbot handling 200+ daily queries — menu, orders, reservations, and feedback collection, fully automated.</p>
-      </div>
-    </div>
-
-    <div class="project-card proj-6 fade-up">
-      <div class="project-bg"></div>
-      <div class="proj-grid-lines"></div>
-      <span class="proj-icon">💈</span>
-      <div class="proj-badge">LOCAL BIZ</div>
-      <div class="project-overlay">
-        <div class="proj-tag">Booking System</div>
-        <div class="proj-name">Salon Booking Platform</div>
-        <p class="proj-desc">Online appointment system with WhatsApp reminders, stylist calendar management, and payment integration.</p>
-      </div>
-    </div>
-
-    <div class="project-card proj-1 fade-up">
-      <div class="project-bg"></div>
-      <div class="proj-grid-lines"></div>
-      <span class="proj-icon">🏪</span>
-      <div class="proj-badge">RETAIL</div>
-      <div class="project-overlay">
-        <div class="proj-tag">Local Business</div>
-        <div class="proj-name">General Store Digital Pivot</div>
-        <p class="proj-desc">Full digital transformation — website, WhatsApp ordering, inventory tracking, and delivery management.</p>
-      </div>
-    </div>
-
-    <div class="project-card proj-2 fade-up">
-      <div class="project-bg"></div>
-      <div class="proj-grid-lines"></div>
-      <span class="proj-icon">🍽️</span>
-      <div class="proj-badge">RESTAURANT</div>
-      <div class="project-overlay">
-        <div class="proj-tag">Restaurant Tech</div>
-        <div class="proj-name">Fine Dining Digital Suite</div>
-        <p class="proj-desc">QR menu system, reservation platform, customer loyalty automation, and kitchen display integration.</p>
-      </div>
-    </div>
-
-    <div class="project-card proj-3 fade-up">
-      <div class="project-bg"></div>
-      <div class="proj-grid-lines"></div>
-      <span class="proj-icon">🔧</span>
-      <div class="proj-badge">AUTOMATION</div>
-      <div class="project-overlay">
-        <div class="proj-tag">Workflow Engine</div>
-        <div class="proj-name">Multi-Branch Ops Automation</div>
-        <p class="proj-desc">Centralized dashboard for multi-location SME — automated reporting, staff comms, and customer follow-ups.</p>
-      </div>
-    </div>
 
   </div>
 </section>
