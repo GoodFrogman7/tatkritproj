@@ -39,25 +39,37 @@ body {
 /* CUSTOM CURSOR */
 .cursor {
   position: fixed;
-  width: 12px; height: 12px;
-  background: var(--crimson);
+  width: 8px; height: 8px;
+  background: #f7ffe2;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10000;
   transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background 0.2s;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   mix-blend-mode: normal;
 }
 .cursor-ring {
   position: fixed;
-  width: 36px; height: 36px;
-  border: 1px solid var(--crimson);
+  width: 34px; height: 34px;
+  border: 1px solid rgba(201,255,61,0.75);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9998;
+  z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: all 0.12s ease;
-  opacity: 0.6;
+  transition: transform 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+  opacity: 0.88;
+}
+.cursor-glow {
+  position: fixed;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,255,61,0.28) 0%, rgba(201,255,61,0.08) 42%, transparent 72%);
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  filter: blur(6px);
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
 }
 body:hover .cursor { opacity: 1; }
 
@@ -100,10 +112,21 @@ nav {
 .nav-logo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: var(--text-main);
   text-decoration: none;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(201,255,61,0.4);
+  box-shadow: 0 0 18px rgba(201,255,61,0.16);
 }
 .nav-logo span {
   color: var(--crimson);
@@ -1506,7 +1529,7 @@ nav {
 }
 .hero { min-height: 100vh; }
 .hero-grid {
-  opacity: 0.72;
+  opacity: 0.68;
   background-size: 54px 54px;
 }
 .hero-title {
@@ -1533,6 +1556,12 @@ nav {
   background: rgba(201,255,61,0.06);
   border-color: rgba(201,255,61,0.35);
 }
+.hero-glow {
+  background: radial-gradient(circle, rgba(201,255,61,0.2) 0%, rgba(124,159,22,0.11) 42%, transparent 72%);
+}
+.hero-glow-2 {
+  background: radial-gradient(circle, rgba(201,255,61,0.11) 0%, transparent 70%);
+}
 .services-grid,
 .projects-grid,
 .pricing-grid,
@@ -1548,6 +1577,7 @@ nav {
 .service-card,
 .project-card,
 .price-card { border: 1px solid rgba(201,255,61,0.16); }
+.service-price { display: none; }
 .service-num,
 .step-num {
   color: rgba(201,255,61,0.95);
@@ -1594,6 +1624,7 @@ footer {
   border-top: 1px solid rgba(201,255,61,0.2);
   background: #0a0c0d;
 }
+.side-text { display: none !important; }
 
 /* MOBILE BASIC */
 @media (max-width: 900px) {
@@ -1621,6 +1652,7 @@ footer {
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-bar" id="scrollBar"></div>
@@ -1630,7 +1662,10 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo" data-text="TAT<span>KRITH</span>">TAT<span>KRITH</span></a>
+  <a href="index.html" class="nav-logo" data-text="TAT<span>KRITH</span>">
+    <img src="assets/tatkrith-logo.png" alt="Tatkrith logo" class="logo-mark">
+    TAT<span>KRITH</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
     <li><a href="#process">Solution</a></li>
@@ -1790,11 +1825,6 @@ footer {
       <span class="service-icon">🌐</span>
       <div class="service-name">Marketing Website</div>
       <p class="service-desc">Cinematic, scroll-driven brochure websites built to convert. Full-stack and SEO-native from day one.</p>
-      <div class="service-price">
-        <span class="price-from">FROM</span>
-        <span class="price-val">₹8K</span>
-        <span class="price-cur">/ one-time</span>
-      </div>
     </div>
 
     <div class="service-card fade-up">
@@ -1802,11 +1832,6 @@ footer {
       <span class="service-icon">💬</span>
       <div class="service-name">WhatsApp AI Chatbot</div>
       <p class="service-desc">24/7 automated customer support, order intake, and booking inside WhatsApp — the native channel for Indian business communication.</p>
-      <div class="service-price">
-        <span class="price-from">FROM</span>
-        <span class="price-val">₹5K</span>
-        <span class="price-cur">/ setup</span>
-      </div>
     </div>
 
     <div class="service-card fade-up">
@@ -1814,11 +1839,6 @@ footer {
       <span class="service-icon">🛒</span>
       <div class="service-name">E-Commerce Store</div>
       <p class="service-desc">Full commerce stack with catalog, UPI/cards/COD checkout, inventory tracking, and order operations for retail + F&B.</p>
-      <div class="service-price">
-        <span class="price-from">FROM</span>
-        <span class="price-val">₹15K</span>
-        <span class="price-cur">/ one-time</span>
-      </div>
     </div>
 
     <div class="service-card fade-up">
@@ -1826,11 +1846,6 @@ footer {
       <span class="service-icon">📅</span>
       <div class="service-name">Booking System</div>
       <p class="service-desc">Online reservations for restaurants, salons, and clinics with automated reminders and smart scheduling.</p>
-      <div class="service-price">
-        <span class="price-from">FROM</span>
-        <span class="price-val">₹6K</span>
-        <span class="price-cur">/ module</span>
-      </div>
     </div>
 
     <div class="service-card fade-up">
@@ -1838,24 +1853,8 @@ footer {
       <span class="service-icon">⚙️</span>
       <div class="service-name">Business Automation</div>
       <p class="service-desc">Invoicing bots, follow-up sequences, review capture, and email/CRM workflows integrated into one operations layer.</p>
-      <div class="service-price">
-        <span class="price-from">FROM</span>
-        <span class="price-val">₹4K</span>
-        <span class="price-cur">/ workflow</span>
-      </div>
     </div>
 
-    <div class="service-card fade-up">
-      <div class="service-num">06</div>
-      <span class="service-icon">🏛️</span>
-      <div class="service-name">Gov / Institutional Portals</div>
-      <p class="service-desc">Citizen-facing platforms with procurement-ready delivery for hospitals and institutions, validated by live government deployments.</p>
-      <div class="service-price">
-        <span class="price-from">CUSTOM</span>
-        <span class="price-val">QUOTE</span>
-        <span class="price-cur">/ project</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2329,7 +2328,8 @@ footer {
 // CUSTOM CURSOR
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
-let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
+const glow = document.getElementById('cursorGlow');
+let ringX = 0, ringY = 0, glowX = 0, glowY = 0, mouseX = 0, mouseY = 0;
 
 document.addEventListener('mousemove', (e) => {
   mouseX = e.clientX; mouseY = e.clientY;
@@ -2340,26 +2340,28 @@ document.addEventListener('mousemove', (e) => {
 function animateRing() {
   ringX += (mouseX - ringX) * 0.12;
   ringY += (mouseY - ringY) * 0.12;
+  glowX += (mouseX - glowX) * 0.06;
+  glowY += (mouseY - glowY) * 0.06;
   ring.style.left = ringX + 'px';
   ring.style.top = ringY + 'px';
+  glow.style.left = glowX + 'px';
+  glow.style.top = glowY + 'px';
   requestAnimationFrame(animateRing);
 }
 animateRing();
 
 document.querySelectorAll('a, button, .service-card, .project-card, .lab-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
-    cursor.style.width = '20px';
-    cursor.style.height = '20px';
-    ring.style.width = '56px';
-    ring.style.height = '56px';
+    cursor.style.transform = 'translate(-50%, -50%) scale(1.4)';
+    ring.style.transform = 'translate(-50%, -50%) scale(1.35)';
     ring.style.borderColor = 'var(--crimson-bright)';
+    glow.style.opacity = '1';
   });
   el.addEventListener('mouseleave', () => {
-    cursor.style.width = '12px';
-    cursor.style.height = '12px';
-    ring.style.width = '36px';
-    ring.style.height = '36px';
+    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    ring.style.transform = 'translate(-50%, -50%) scale(1)';
     ring.style.borderColor = 'var(--crimson)';
+    glow.style.opacity = '0.75';
   });
 });
 
