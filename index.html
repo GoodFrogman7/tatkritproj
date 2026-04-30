@@ -61,6 +61,21 @@ body {
 }
 body:hover .cursor { opacity: 1; }
 
+.deploy-check {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10002;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 23, 68, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 10px;
+}
+
 /* NOISE TEXTURE OVERLAY */
 body::before {
   content: '';
@@ -1640,6 +1655,7 @@ footer {
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+<div class="deploy-check">Live marker: 30-apr-2026-05:12</div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-bar" id="scrollBar"></div>
