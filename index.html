@@ -1,522 +1,2447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TATKRITH SOLUTIONS — Investor Deck 2026</title>
-  <meta name="description" content="Tatkrith Solutions investor deck website. Enterprise-grade digital infrastructure for India's SMEs.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #090a0d;
-      --bg-2: #0f1116;
-      --line: #202532;
-      --line-soft: #171b25;
-      --text: #f3f5fb;
-      --muted: #a3adbf;
-      --accent: #ff3a5f;
-      --accent-soft: #ff3a5f1f;
-      --max: 1200px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TATKRITH SOLUTIONS — Investor Deck 2026</title>
+<meta name="description" content="Tatkrith Solutions — enterprise-grade digital infrastructure for India's SMEs. 40+ live deployments, 5 verticals, 3-7 day launch cycles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #c9ff3d;
+  --crimson-deep: #7c9f16;
+  --crimson-bright: #e8ff77;
+  --crimson-glow: rgba(201,255,61,0.55);
+  --chrome: #C0C0C0;
+  --chrome-bright: #E8E8E8;
+  --chrome-dark: #888;
+  --void: #050508;
+  --void-2: #0a0a0f;
+  --void-3: #0f0f18;
+  --text-main: #F0F0F5;
+  --text-dim: #8888AA;
+  --accent-line: rgba(201,255,61,0.3);
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, system-ui, sans-serif;
-      line-height: 1.5;
-      overflow-x: hidden;
-      background-image:
-        linear-gradient(var(--line-soft) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(9, 10, 13, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-wrap {
-      width: min(100%, var(--max));
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .logo {
-      text-decoration: none;
-      color: var(--text);
-      font-family: "Bebas Neue", sans-serif;
-      letter-spacing: 0.08em;
-      font-size: 2rem;
-    }
-    .logo span { color: var(--accent); }
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-family: "Space Mono", monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .nav-links a:hover { color: var(--text); }
+html { scroll-behavior: smooth; }
 
-    .deck-section {
-      scroll-snap-align: start;
-      min-height: 100vh;
-      border-top: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-    }
-    .deck-inner {
-      width: min(100%, var(--max));
-      margin: 0 auto;
-      padding: 100px 24px 48px;
-    }
-    .eyebrow {
-      font-family: "Space Mono", monospace;
-      color: var(--accent);
-      letter-spacing: 0.22em;
-      font-size: 0.67rem;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .title {
-      font-family: "Bebas Neue", sans-serif;
-      letter-spacing: 0.03em;
-      line-height: 0.9;
-      font-size: clamp(3rem, 9vw, 8rem);
-      margin-bottom: 18px;
-    }
-    .title .accent { color: var(--accent); }
-    .lede {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: clamp(1rem, 2.1vw, 1.35rem);
-    }
+body {
+  background: var(--void);
+  color: var(--text-main);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
 
-    .hero-stats {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .hero-stat {
-      background: var(--bg-2);
-      padding: 22px;
-    }
-    .hero-stat .num {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 2.8rem;
-      line-height: 1;
-      color: var(--text);
-    }
-    .hero-stat .lbl {
-      margin-top: 6px;
-      font-family: "Space Mono", monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--crimson);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: normal;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--crimson);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease;
+  opacity: 0.6;
+}
+body:hover .cursor { opacity: 1; }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-    .panel {
-      background: var(--bg-2);
-      border: 1px solid var(--line);
-      padding: 24px;
-    }
-    .panel h3 {
-      font-family: "Bebas Neue", sans-serif;
-      letter-spacing: 0.06em;
-      margin-bottom: 10px;
-      font-size: 1.7rem;
-    }
-    .panel p { color: var(--muted); }
+.deploy-check { display: none; }
 
-    .metric-list {
-      margin-top: 10px;
-      display: grid;
-      gap: 12px;
-    }
-    .metric-item {
-      border: 1px solid var(--line);
-      background: #0c0f15;
-      padding: 14px;
-    }
-    .metric-item b {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-    .metric-item span {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+/* NOISE TEXTURE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.4;
+}
 
-    .cards {
-      margin-top: 18px;
-      display: grid;
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .card {
-      background: var(--bg-2);
-      padding: 20px;
-      min-height: 170px;
-    }
-    .card .n {
-      color: var(--accent);
-      font-family: "Space Mono", monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .card h4 {
-      font-size: 1.15rem;
-      margin-bottom: 8px;
-    }
-    .card p { color: var(--muted); font-size: 0.96rem; }
+/* SCANLINES */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 9996;
+}
 
-    .portfolio {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .project {
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: var(--bg-2);
-      color: inherit;
-      overflow: hidden;
-    }
-    .project-image {
-      height: 210px;
-      background-size: cover;
-      background-position: center;
-      border-bottom: 1px solid var(--line);
-    }
-    .project-body { padding: 14px 16px; }
-    .project-body .tag {
-      color: var(--accent);
-      font-family: "Space Mono", monospace;
-      letter-spacing: 0.14em;
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .project-body h4 { font-size: 1.1rem; }
-    .project-body p {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: linear-gradient(to bottom, rgba(5,5,8,0.98), transparent);
+  border-bottom: 1px solid rgba(220,20,60,0.12);
+}
 
-    .pricing {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .price {
-      background: var(--bg-2);
-      padding: 20px;
-    }
-    .price h4 {
-      font-size: 1.15rem;
-      margin-bottom: 6px;
-    }
-    .price .amount {
-      font-family: "Bebas Neue", sans-serif;
-      letter-spacing: 0.04em;
-      font-size: 3rem;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .price .usd {
-      color: var(--muted);
-      font-family: "Space Mono", monospace;
-      font-size: 0.74rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
-    }
-    .price ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--text-main);
+  text-decoration: none;
+  position: relative;
+}
+.nav-logo span {
+  color: var(--crimson);
+}
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--crimson), transparent);
+}
 
-    .cta-block {
-      border: 1px solid var(--line);
-      background: var(--bg-2);
-      padding: 26px;
-      display: grid;
-      gap: 10px;
-    }
-    .cta-block a {
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px dashed var(--muted);
-      width: fit-content;
-    }
-    .cta-block a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::before {
+  content: '//';
+  color: var(--crimson);
+  margin-right: 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { color: var(--text-main); }
+.nav-links a:hover::before { opacity: 1; }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 24px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-align: center;
-    }
+.nav-cta {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--crimson);
+  border: 1px solid var(--crimson);
+  padding: 10px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.nav-cta:hover {
+  background: var(--crimson);
+  color: white;
+  box-shadow: 0 0 30px var(--crimson-glow);
+}
 
-    .deploy-check { display: none; }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 48px 60px;
+}
 
-    @media (max-width: 1020px) {
-      .nav-links { display: none; }
-      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .grid-2 { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      .portfolio { grid-template-columns: 1fr; }
-      .pricing { grid-template-columns: 1fr; }
-    }
-  </style>
+/* ANIMATED GRID BACKGROUND */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(220,20,60,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,20,60,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* HERO GLOW ORB */
+.hero-glow {
+  position: absolute;
+  right: -200px; top: 50%;
+  transform: translateY(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(220,20,60,0.15) 0%, rgba(139,0,0,0.08) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-glow-2 {
+  position: absolute;
+  left: -100px; bottom: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(220,20,60,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-tag::before {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--crimson);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 12vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.hero-title .line-1 { color: var(--text-main); }
+.hero-title .line-2 {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--crimson);
+  text-shadow: 0 0 60px rgba(220,20,60,0.4);
+}
+.hero-title .line-3 {
+  color: var(--crimson);
+  text-shadow: 0 0 40px var(--crimson-glow), 0 0 80px rgba(220,20,60,0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  max-width: 540px;
+  margin: 32px 0 48px;
+  line-height: 1.6;
+}
+.hero-subtitle strong {
+  color: var(--chrome-bright);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.btn-primary {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: white;
+  background: var(--crimson);
+  padding: 16px 40px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: all 0.25s;
+  box-shadow: 0 0 0 rgba(220,20,60,0);
+}
+.btn-primary:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 40px var(--crimson-glow), 0 0 80px rgba(220,20,60,0.2);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--chrome);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(192,192,192,0.3);
+  transition: all 0.2s;
+}
+.btn-ghost:hover { color: white; border-color: white; }
+.btn-ghost .arrow { transition: transform 0.2s; }
+.btn-ghost:hover .arrow { transform: translateX(6px); }
+
+/* HERO STATS */
+.hero-stats {
+  position: absolute;
+  bottom: 60px; right: 48px;
+  display: flex;
+  gap: 48px;
+  z-index: 2;
+}
+.stat {
+  text-align: right;
+}
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--crimson);
+  line-height: 1;
+  text-shadow: 0 0 30px var(--crimson-glow);
+}
+.stat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* SCROLLING TICKER */
+.ticker {
+  background: var(--crimson);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.ticker::before, .ticker::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 100px;
+  z-index: 2;
+}
+.ticker::before { left: 0; background: linear-gradient(90deg, var(--crimson), transparent); }
+.ticker::after { right: 0; background: linear-gradient(-90deg, var(--crimson), transparent); }
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 25s linear infinite;
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.9);
+  padding: 0 40px;
+}
+.ticker-sep {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.6rem;
+  align-self: center;
+}
+
+/* SECTION SHARED */
+section {
+  padding: 120px 48px;
+  position: relative;
+}
+
+.section-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-tag::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--crimson);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+.section-title em {
+  font-style: normal;
+  color: var(--crimson);
+}
+
+/* SERVICES */
+#services {
+  background: var(--void-2);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 80px;
+  background: rgba(220,20,60,0.1);
+  border: 1px solid rgba(220,20,60,0.15);
+}
+
+.service-card {
+  background: var(--void);
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: none;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(220,20,60,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--crimson);
+  transition: width 0.4s ease;
+}
+.service-card:hover::before { opacity: 1; }
+.service-card:hover::after { width: 100%; }
+.service-card:hover { background: var(--void-3); }
+
+.service-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: rgba(220,20,60,0.08);
+  line-height: 1;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+.service-card:hover .service-num { color: rgba(220,20,60,0.15); }
+
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: block;
+  filter: grayscale(0.5);
+  transition: filter 0.3s;
+}
+.service-card:hover .service-icon { filter: grayscale(0); }
+
+.service-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.service-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.service-price {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(220,20,60,0.15);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.price-from {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.price-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--crimson);
+}
+.price-cur {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* HOW WE BUILD */
+#process {
+  background: var(--void);
+  overflow: hidden;
+}
+
+.process-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 80px;
+  align-items: start;
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(220,20,60,0.1);
+  position: relative;
+  transition: all 0.3s;
+}
+.process-step:first-child { border-top: 1px solid rgba(220,20,60,0.1); }
+.process-step:hover { padding-left: 12px; }
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--crimson);
+  line-height: 1;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+.process-step:hover .step-num { opacity: 1; }
+
+.step-content {}
+.step-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.step-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.process-visual {
+  position: sticky;
+  top: 120px;
+}
+
+.terminal-box {
+  background: var(--void-2);
+  border: 1px solid rgba(220,20,60,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.terminal-header {
+  background: rgba(220,20,60,0.08);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(220,20,60,0.15);
+}
+.t-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.t-dot:nth-child(1) { background: #FF5F57; }
+.t-dot:nth-child(2) { background: #FFBD2E; }
+.t-dot:nth-child(3) { background: #28C840; }
+.terminal-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-left: 8px;
+}
+.terminal-body {
+  padding: 24px 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 2;
+}
+.t-line { display: block; }
+.t-cmd { color: var(--crimson); }
+.t-out { color: #4CAF50; }
+.t-out-dim { color: var(--text-dim); }
+.t-special { color: var(--chrome); }
+.t-cursor {
+  display: inline-block;
+  width: 8px; height: 14px;
+  background: var(--crimson);
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* PROJECTS / WORK */
+#work {
+  background: var(--void-2);
+}
+
+.works-intro {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 80px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+
+.works-desc {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+.works-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.filter-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  background: none;
+  cursor: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  color: var(--crimson);
+  border-color: var(--crimson);
+  background: rgba(220,20,60,0.05);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(220,20,60,0.08);
+}
+
+.project-card {
+  background: var(--void);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: none;
+}
+a.project-card {
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.project-card:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
+
+.project-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.project-card:not(.has-cover):hover .project-bg { transform: scale(1.05); }
+.project-card.has-cover .project-bg {
+  transform: scale(1.22) perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+  will-change: transform;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card.has-cover.in-view .project-bg {
+  transform: scale(1) perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+}
+.project-card.has-cover:hover .project-bg {
+  transform: scale(1.08) perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+}
+
+/* Project background patterns */
+.proj-1 .project-bg { background: linear-gradient(135deg, #0a0a18, #1a0a1a); }
+.proj-2 .project-bg { background: linear-gradient(135deg, #0a1810, #0a0a18); }
+.proj-3 .project-bg { background: linear-gradient(135deg, #180a0a, #0a1018); }
+.proj-4 .project-bg { background: linear-gradient(135deg, #10180a, #0a1810); }
+.proj-5 .project-bg { background: linear-gradient(135deg, #0a0a18, #18100a); }
+.proj-6 .project-bg { background: linear-gradient(135deg, #180a18, #0a0a18); }
+
+/* Live portfolio cover photos */
+.project-bg.proj-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.project-bg.proj-cover-iiitl { background-image: url('assets/portfolio-iiitl.png'); }
+.project-bg.proj-cover-hospital { background-image: url('assets/portfolio-lbrn-hospital.png'); }
+.project-bg.proj-cover-teejays { background-image: url('assets/portfolio-teejays.png'); }
+.project-bg.proj-cover-petperfect { background-image: url('assets/portfolio-petperfect.png'); }
+.project-card.has-cover .proj-icon { opacity: 0.04; }
+
+.proj-live-hint {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--crimson-bright);
+  margin-top: 10px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.proj-live-hint::after {
+  content: '↗';
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+.proj-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  opacity: 0.15;
+  transition: all 0.4s;
+}
+.project-card:hover .proj-icon { opacity: 0.05; transform: translate(-50%, -50%) scale(1.5); }
+
+.proj-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(220,20,60,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,20,60,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,5,8,0.95) 0%, rgba(5,5,8,0.3) 50%, transparent 100%);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: translateY(20px);
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+.project-card:hover .project-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.proj-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.proj-tag::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--crimson);
+}
+
+.proj-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.proj-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.proj-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: var(--crimson);
+  border: 1px solid rgba(220,20,60,0.4);
+  padding: 4px 10px;
+  background: rgba(220,20,60,0.05);
+  text-transform: uppercase;
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+/* BIG PROJECT (spans 2 cols) */
+.proj-featured {
+  grid-column: span 2;
+  aspect-ratio: 8/3;
+}
+
+/* PRICING */
+#pricing {
+  background: var(--void);
+  overflow: hidden;
+}
+
+.pricing-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+.pricing-note {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  align-self: end;
+}
+.pricing-note strong { color: var(--text-main); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(220,20,60,0.1);
+}
+
+.price-card {
+  background: var(--void);
+  padding: 48px 36px;
+  position: relative;
+  transition: all 0.3s;
+}
+.price-card.featured {
+  background: linear-gradient(160deg, rgba(220,20,60,0.08), var(--void-3));
+  border-top: 2px solid var(--crimson);
+}
+
+.price-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: white;
+  background: var(--crimson);
+  padding: 4px 12px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 24px;
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+.price-tier {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.price-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.price-amount span {
+  font-size: 1.8rem;
+  color: var(--text-dim);
+}
+.price-card.featured .price-amount { color: var(--crimson); }
+
+.price-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  margin-bottom: 32px;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 40px;
+}
+.price-features li {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.price-features li::before {
+  content: '▸';
+  color: var(--crimson);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+.price-features li.included { color: var(--text-main); }
+
+.btn-price {
+  display: block;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  padding: 14px;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: all 0.25s;
+}
+.btn-price-ghost {
+  color: var(--crimson);
+  border: 1px solid rgba(220,20,60,0.4);
+}
+.btn-price-ghost:hover {
+  background: rgba(220,20,60,0.08);
+}
+.btn-price-solid {
+  background: var(--crimson);
+  color: white;
+}
+.btn-price-solid:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 30px var(--crimson-glow);
+}
+
+.price-usd {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--chrome);
+  margin-top: 8px;
+  opacity: 0.95;
+}
+.price-fx-note {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  margin-top: 24px;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+/* GOVERNMENT / TRUST SPOTLIGHT */
+#gov-spotlight {
+  padding: 0 48px 80px;
+  background: var(--void);
+}
+.gov-spotlight-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  border: 1px solid rgba(220,20,60,0.25);
+  background: linear-gradient(165deg, rgba(220,20,60,0.06), var(--void-2));
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2px;
+  overflow: hidden;
+}
+.gov-hero-card {
+  position: relative;
+  min-height: 320px;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.gov-hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('assets/portfolio-lbrn-hospital.png') center/cover no-repeat;
+  transform: scale(1.05);
+  transition: transform 0.8s ease;
+}
+.gov-hero-card:hover::before { transform: scale(1.1); }
+.gov-hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(5,5,8,0.92) 0%, rgba(5,5,8,0.45) 55%, transparent 100%);
+}
+.gov-hero-content { position: relative; z-index: 2; }
+.gov-pill {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  color: var(--crimson-bright);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-block;
+  border: 1px solid rgba(220,20,60,0.45);
+  padding: 6px 14px;
+  background: rgba(5,5,8,0.6);
+}
+.gov-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.gov-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+.gov-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.gov-cta {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 12px 22px;
+  border: 1px solid rgba(220,20,60,0.5);
+  background: rgba(220,20,60,0.12);
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: all 0.25s;
+}
+.gov-cta:hover {
+  background: rgba(220,20,60,0.22);
+  box-shadow: 0 0 24px rgba(220,20,60,0.25);
+}
+.gov-cta-secondary {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding-bottom: 2px;
+}
+.gov-cta-secondary:hover { color: var(--crimson-bright); border-color: var(--crimson); }
+
+.gov-side-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(220,20,60,0.08);
+}
+.gov-side-card {
+  flex: 1;
+  background: var(--void);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-height: 140px;
+  position: relative;
+  overflow: hidden;
+}
+.gov-side-card.accent {
+  background: linear-gradient(135deg, var(--void-3), var(--void));
+  border-left: 3px solid var(--crimson);
+}
+.gov-side-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  color: var(--crimson);
+  text-transform: uppercase;
+}
+.gov-side-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+.gov-side-card a {
+  font-size: 0.85rem;
+  color: var(--chrome-bright);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.gov-side-card a:hover { color: var(--crimson-bright); }
+
+/* IMMERSIVE / AR WHATSAPP LAB */
+#labs {
+  background: var(--void-2);
+  padding: 100px 48px;
+  border-top: 1px solid rgba(220,20,60,0.1);
+}
+.labs-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.labs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1200px;
+}
+.lab-card {
+  position: relative;
+  border: 1px solid rgba(220,20,60,0.2);
+  background: var(--void);
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+.lab-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.95;
+  transition: transform 0.6s ease, opacity 0.4s;
+}
+.lab-card:hover video {
+  transform: scale(1.04);
+  opacity: 1;
+}
+.lab-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 24px;
+  background: linear-gradient(transparent, rgba(5,5,8,0.95));
+  pointer-events: none;
+}
+.lab-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+}
+.lab-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.lab-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 24px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* CONTACT */
+#contact {
+  background: var(--void);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-bg-text {
+  position: absolute;
+  bottom: -40px; left: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22vw;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(220,20,60,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 0.95;
+  margin-top: 40px;
+}
+.contact-big .red { color: var(--crimson); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--void-2);
+  border: 1px solid rgba(220,20,60,0.15);
+  border-bottom: 1px solid rgba(220,20,60,0.4);
+  color: var(--text-main);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--crimson);
+  background: rgba(220,20,60,0.03);
+}
+.form-select option { background: var(--void-2); }
+.form-textarea {
+  resize: none;
+  height: 100px;
+  clip-path: none;
+}
+
+.form-submit {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  color: white;
+  background: var(--crimson);
+  border: none;
+  padding: 18px 40px;
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  cursor: none;
+  transition: all 0.25s;
+  align-self: flex-start;
+}
+.form-submit:hover {
+  background: var(--crimson-bright);
+  box-shadow: 0 0 40px var(--crimson-glow);
+  transform: translateY(-2px);
+}
+
+/* FOOTER */
+footer {
+  background: var(--void-2);
+  border-top: 1px solid rgba(220,20,60,0.15);
+  padding: 60px 48px 40px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-brand {}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+.footer-logo span { color: var(--crimson); }
+.footer-tagline {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.footer-col-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--crimson);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-links a::before {
+  content: '—';
+  font-size: 0.6rem;
+  color: rgba(220,20,60,0.4);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-main); }
+.footer-links a:hover::before { color: var(--crimson); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(220,20,60,0.1);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.footer-legal {
+  display: flex;
+  gap: 32px;
+}
+.footer-legal a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.footer-legal a:hover { color: var(--crimson); }
+
+/* DIAGONAL DIVIDER */
+.diagonal-div {
+  height: 60px;
+  background: var(--void);
+  clip-path: polygon(0 0, 100% 60px, 100% 60px, 0 60px);
+  margin-top: -1px;
+}
+.diagonal-div.inv {
+  background: var(--void-2);
+  clip-path: polygon(0 0, 100% 0, 100% 60px, 0 0);
+}
+
+/* RED LINE ACCENTS */
+.red-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+  height: 1px;
+  width: 60%;
+  opacity: 0.3;
+}
+
+/* GLITCH EFFECT on hover for nav logo */
+@keyframes glitch1 {
+  0%, 100% { clip-path: inset(0 0 100% 0); }
+  20% { clip-path: inset(0 0 70% 0); transform: translate(-2px, 0); }
+  40% { clip-path: inset(30% 0 40% 0); transform: translate(2px, 0); }
+  60% { clip-path: inset(60% 0 10% 0); transform: translate(-2px, 0); }
+  80% { clip-path: inset(80% 0 0% 0); transform: translate(0, 0); }
+}
+
+.nav-logo:hover::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  color: var(--crimson-bright);
+  animation: glitch1 0.3s steps(1) forwards;
+}
+
+/* SCROLL PROGRESS BAR */
+.scroll-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--crimson);
+  z-index: 10000;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  box-shadow: 0 0 8px var(--crimson);
+}
+
+/* VERTICAL SIDE TEXT */
+.side-text {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  color: rgba(220,20,60,0.4);
+  text-transform: uppercase;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ANIMATIONS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(220,20,60,0.2);
+  background: rgba(220,20,60,0.04);
+  padding: 16px 24px;
+  margin-top: 24px;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.highlight-box .hl-icon { color: var(--crimson); font-size: 1.4rem; }
+.highlight-box .hl-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+.highlight-box .hl-text strong { color: var(--text-main); display: block; }
+
+/* PITCH DECK VISUAL OVERRIDE (yellow-green theme + interactive UI kept) */
+body { background: #0a0c0d; }
+section {
+  min-height: 92vh;
+  border-top: 1px solid rgba(201,255,61,0.14);
+  border-bottom: 1px solid rgba(201,255,61,0.06);
+  padding-top: 110px;
+  padding-bottom: 90px;
+}
+.section-tag {
+  letter-spacing: 0.34em;
+  font-size: 0.62rem;
+  color: rgba(201,255,61,0.9);
+}
+.section-title {
+  font-size: clamp(3.5rem, 7.6vw, 7.5rem);
+  line-height: 0.88;
+}
+.section-title em {
+  color: var(--crimson);
+  text-shadow: 0 0 22px rgba(201,255,61,0.24);
+}
+nav {
+  background: rgba(8,10,10,0.9);
+  border-bottom-color: rgba(201,255,61,0.18);
+}
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+}
+.hero { min-height: 100vh; }
+.hero-grid {
+  opacity: 0.72;
+  background-size: 54px 54px;
+}
+.hero-title {
+  font-size: clamp(5.4rem, 13.5vw, 13.4rem);
+  line-height: 0.84;
+}
+.hero-title .line-1 {
+  color: #f5f9e8;
+  text-shadow: 0 0 24px rgba(255,255,255,0.05);
+}
+.hero-title .line-2 {
+  -webkit-text-stroke: 2px var(--crimson);
+  text-shadow: 0 0 22px rgba(201,255,61,0.34);
+}
+.hero-title .line-3 {
+  color: var(--crimson);
+  text-shadow: 0 0 40px rgba(201,255,61,0.42);
+}
+.hero-subtitle {
+  font-size: 1.36rem;
+  max-width: 760px;
+}
+.highlight-box {
+  background: rgba(201,255,61,0.06);
+  border-color: rgba(201,255,61,0.35);
+}
+.services-grid,
+.projects-grid,
+.pricing-grid,
+.labs-grid {
+  gap: 1px;
+  background: rgba(201,255,61,0.2);
+}
+.service-card,
+.project-card,
+.price-card,
+.lab-card,
+.gov-side-card { background: #090d0a; }
+.service-card,
+.project-card,
+.price-card { border: 1px solid rgba(201,255,61,0.16); }
+.service-num,
+.step-num {
+  color: rgba(201,255,61,0.95);
+  text-shadow: 0 0 18px rgba(201,255,61,0.3);
+}
+.service-name,
+.proj-name,
+.price-tier,
+.gov-title,
+.lab-title { letter-spacing: 0.08em; }
+.service-desc,
+.works-desc,
+.pricing-note,
+.proj-desc,
+.step-desc,
+.gov-desc,
+.price-features li,
+.price-sub { color: #a8b59e; }
+.process-visual {
+  border-left: 1px solid rgba(201,255,61,0.14);
+  padding-left: 26px;
+}
+.terminal-box {
+  border-color: rgba(201,255,61,0.24);
+  box-shadow: 0 0 0 1px rgba(201,255,61,0.08);
+}
+.ticker {
+  background: #0d120b;
+  border-top: 1px solid rgba(201,255,61,0.34);
+  border-bottom: 1px solid rgba(201,255,61,0.15);
+}
+.ticker-item { color: #d9ff73; }
+.ticker::before,
+.ticker::after { display: none; }
+.price-card.featured {
+  box-shadow: 0 0 0 1px rgba(201,255,61,0.3), 0 0 36px rgba(201,255,61,0.1);
+}
+#contact { background: #080b08; }
+.contact-big {
+  font-size: clamp(4.2rem, 8.5vw, 8rem);
+  letter-spacing: 0.02em;
+}
+footer {
+  border-top: 1px solid rgba(201,255,61,0.2);
+  background: #0a0c0d;
+}
+
+/* MOBILE BASIC */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-stats { position: relative; bottom: auto; right: auto; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
+  .stat { text-align: left; }
+  .services-grid, .projects-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .proj-featured { grid-column: span 1; aspect-ratio: 4/3; }
+  .process-layout, .works-intro, .pricing-header, .contact-layout, .footer-top { grid-template-columns: 1fr; }
+  #gov-spotlight { padding: 0 24px 60px; }
+  .gov-spotlight-inner { grid-template-columns: 1fr; }
+  .labs-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .side-text { display: none; }
+  .hero-grid { background-size: 30px 30px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+</style>
 </head>
 <body>
-  <nav>
-    <div class="nav-wrap">
-      <a class="logo" href="#cover">TAT<span>KRITH</span></a>
-      <ul class="nav-links">
-        <li><a href="#problem">Problem</a></li>
-        <li><a href="#solution">Solution</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#traction">Traction</a></li>
-        <li><a href="#model">Model</a></li>
-        <li><a href="#market">Market</a></li>
-        <li><a href="#why">Why</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- SIDE TEXT -->
+<div class="side-text">TATKRITHSOLUTIONS.NETLIFY.APP &nbsp;///&nbsp; INVESTOR DECK 2026</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo" data-text="TAT<span>KRITH</span>">TAT<span>KRITH</span></a>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#process">Solution</a></li>
+    <li><a href="#work">Traction</a></li>
+    <li><a href="#labs">Market</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Deploy Us →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">// INVESTOR DECK 2026 // ENTERPRISE RIGOUR + STARTUP SPEED</div>
+    <h1 class="hero-title">
+      <div class="line-1">WE BUILD</div>
+      <div class="line-2">WHAT OTHERS</div>
+      <div class="line-3">CAN'T</div>
+    </h1>
+    <p class="hero-subtitle">
+      <strong>Enterprise-grade digital infrastructure for India's SMEs.</strong> 63 million businesses, low digital penetration, massive demand. We deploy production systems in 3-7 days, not 3-6 months.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">
+        <span>See Our Work</span>
+        <span>→</span>
+      </a>
+      <a href="contact.html" class="btn-ghost">
+        Start Your Project <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="highlight-box" style="margin-top:40px;">
+      <span class="hl-icon">🏛️</span>
+      <span class="hl-text">
+        <strong>Government-Grade Delivery</strong>
+        Trusted for IIIT & Hospital projects. Enterprise quality, startup speed.
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Live Deployments</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Verticals Served</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3-7</div>
+      <div class="stat-label">Day Launch Cycle</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNMENT / TRUST — flagship credibility -->
+<section id="gov-spotlight" aria-label="Government and institutional work">
+  <div class="gov-spotlight-inner">
+    <div class="gov-hero-card">
+      <div class="gov-hero-content">
+        <span class="gov-pill">Government of Uttar Pradesh · Live deployment</span>
+        <h3 class="gov-title">Lok Bandhu Hospital — public healthcare portal</h3>
+        <p class="gov-desc">Citizen-facing hospital platform under UP administration: departments, leadership transparency, facilities, and appointments. This is the kind of trust-heavy build investors and buyers look for — not a mockup.</p>
+        <div class="gov-cta-row">
+          <a class="gov-cta" href="https://www.lokbandhuhospital.in/" target="_blank" rel="noopener noreferrer">Open live hospital site →</a>
+          <a class="gov-cta-secondary" href="#work">See it in our portfolio below</a>
+        </div>
+      </div>
+    </div>
+    <div class="gov-side-stack">
+      <div class="gov-side-card accent">
+        <span class="gov-side-label">National institute · IIIT</span>
+        <span class="gov-side-title">IIIT Lucknow institutional web</span>
+        <a href="https://iiitl.ac.in/" target="_blank" rel="noopener noreferrer">iiitl.ac.in ↗</a>
+      </div>
+      <div class="gov-side-card">
+        <span class="gov-side-label">Why this matters</span>
+        <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.65;margin:0;">Regulated-sector delivery, accessibility expectations, and uptime discipline — the same rigor we bring to cafés, commerce, and product launches.</p>
+        <a href="contact.html" style="margin-top:8px;">Book a gov / enterprise scoping call →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <!-- Doubled for seamless loop -->
+    <span class="ticker-item">63M SMES IN INDIA</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">40+ LIVE DEPLOYMENTS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">5 VERTICALS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">3-7 DAY LAUNCH</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GOVERNMENT-GRADE DELIVERY</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">WHATSAPP + UPI COMMERCE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">SME-FIRST PRICING</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">ENTERPRISE RIGOUR</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">STARTUP SPEED</span><span class="ticker-sep">◆</span>
+    <!-- Repeat -->
+    <span class="ticker-item">63M SMES IN INDIA</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">40+ LIVE DEPLOYMENTS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">5 VERTICALS</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">3-7 DAY LAUNCH</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">GOVERNMENT-GRADE DELIVERY</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">WHATSAPP + UPI COMMERCE</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">SME-FIRST PRICING</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">ENTERPRISE RIGOUR</span><span class="ticker-sep">◆</span>
+    <span class="ticker-item">STARTUP SPEED</span><span class="ticker-sep">◆</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="section-tag">The Problem</div>
+  <h2 class="section-title">63M SMES.<br><em>DIGITAL GAP.</em></h2>
+  <div class="works-intro">
+    <p class="works-desc">India has the world's largest entrepreneurial economy, but most SMEs still operate without a conversion-ready digital stack. Speed, affordability, and integration remain broken.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-name">Agencies are too slow</div>
+      <p class="service-desc">Traditional web studios take 3-6 months. By launch, the brief is stale and momentum is gone.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-name">Templates don't convert</div>
+      <p class="service-desc">Off-the-shelf builds lack SEO depth, automation, and serious business integration.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-name">Enterprise tools are out of reach</div>
+      <p class="service-desc">Bots, booking engines, and CRM flows are priced for MNCs, not local operators.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-name">Government portals lag furthest</div>
+      <p class="service-desc">Citizen-facing systems are often legacy-heavy, difficult to use, and slow to modernize.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">Products & Services</div>
+  <h2 class="section-title">FIVE VERTICALS.<br><em>ONE SQUAD.</em></h2>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <span class="service-icon">🌐</span>
+      <div class="service-name">Marketing Website</div>
+      <p class="service-desc">Cinematic, scroll-driven brochure websites built to convert. Full-stack and SEO-native from day one.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹8K</span>
+        <span class="price-cur">/ one-time</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <span class="service-icon">💬</span>
+      <div class="service-name">WhatsApp AI Chatbot</div>
+      <p class="service-desc">24/7 automated customer support, order intake, and booking inside WhatsApp — the native channel for Indian business communication.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹5K</span>
+        <span class="price-cur">/ setup</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <span class="service-icon">🛒</span>
+      <div class="service-name">E-Commerce Store</div>
+      <p class="service-desc">Full commerce stack with catalog, UPI/cards/COD checkout, inventory tracking, and order operations for retail + F&B.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹15K</span>
+        <span class="price-cur">/ one-time</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <span class="service-icon">📅</span>
+      <div class="service-name">Booking System</div>
+      <p class="service-desc">Online reservations for restaurants, salons, and clinics with automated reminders and smart scheduling.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹6K</span>
+        <span class="price-cur">/ module</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">05</div>
+      <span class="service-icon">⚙️</span>
+      <div class="service-name">Business Automation</div>
+      <p class="service-desc">Invoicing bots, follow-up sequences, review capture, and email/CRM workflows integrated into one operations layer.</p>
+      <div class="service-price">
+        <span class="price-from">FROM</span>
+        <span class="price-val">₹4K</span>
+        <span class="price-cur">/ workflow</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-num">06</div>
+      <span class="service-icon">🏛️</span>
+      <div class="service-name">Gov / Institutional Portals</div>
+      <p class="service-desc">Citizen-facing platforms with procurement-ready delivery for hospitals and institutions, validated by live government deployments.</p>
+      <div class="service-price">
+        <span class="price-from">CUSTOM</span>
+        <span class="price-val">QUOTE</span>
+        <span class="price-cur">/ project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-tag">Our Solution</div>
+  <h2 class="section-title">ENTERPRISE RIGOUR.<br><em>STARTUP SPEED.</em></h2>
+
+  <div class="process-layout">
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">AI-Augmented Build Squad</div>
+          <p class="step-desc">12+ builders running AI tooling in parallel, compressing enterprise-grade delivery into 3-7 day launch windows.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Custom Builds, Not Templates</div>
+          <p class="step-desc">Every deployment is purpose-built for the client's vertical, audience, conversion funnel, and operational reality.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Integrated Automation from Day One</div>
+          <p class="step-desc">WhatsApp bots, UPI checkout, booking flows, and CRM automations are shipped together as one system.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Government-Grade Compliance</div>
+          <p class="step-desc">We've already cleared institutional expectations with IIIT Lucknow and Lok Bandhu Hospital UP.</p>
+        </div>
+      </div>
+      <div class="process-step fade-up">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Why This Wins</div>
+          <p class="step-desc">Speed at enterprise quality, SME-accessible pricing, and full-stack ownership without vendor fragmentation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-visual fade-up">
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="terminal-title">tatkrit_build_engine.sh</div>
+        </div>
+        <div class="terminal-body">
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-special">tatkrit init --project</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Brief received & analyzed</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Tech stack selected</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-special">deploy --stack website+bot</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Domain configured</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">WhatsApp API connected</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Payment gateway live</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Booking system active</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-special">automate --workflows all</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Follow-up bot: running</span></span>
+          <span class="t-line"><span class="t-out">✓</span> <span class="t-out-dim">Review collection: armed</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-out-dim">STATUS: </span><span class="t-out">LIVE 🚀</span></span>
+          <span class="t-line"><span class="t-out-dim">BUILD TIME: </span><span class="t-special">3–7 days</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-cmd">$ </span><span class="t-cursor"></span></span>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; padding:24px; border:1px solid rgba(220,20,60,0.15); background:rgba(220,20,60,0.03);">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--crimson);text-transform:uppercase;margin-bottom:16px;">Why We're Different</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            AI-augmented development = 10× faster build cycles
+          </div>
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            Parallel delivery — design, engineering, and automation in one squad
+          </div>
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            Government-grade quality at SME-friendly pricing
+          </div>
+          <div style="font-size:0.9rem;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--crimson);">▸</span>
+            Full stack under one roof — no juggling vendors
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET OPPORTUNITY -->
+<section id="labs">
+  <div class="labs-head fade-up">
+    <div class="section-tag">Market Opportunity</div>
+    <h2 class="section-title">₹50,000 CRORE<br><em>BY 2027</em></h2>
+    <p style="font-size:1rem;color:var(--text-dim);line-height:1.75;max-width:740px;margin-top:16px;">India's SME sector contributes 30% of GDP, yet digital penetration is still below 20%. Digital India, UPI scale, and WhatsApp commerce create a once-in-a-generation infrastructure opportunity.</p>
+  </div>
+  <div class="labs-grid">
+    <div class="lab-card fade-up">
+      <div class="lab-fallback">
+        <div>
+          <div class="lab-sub" style="margin-bottom:10px;">63M SMEs · 20% digitised</div>
+          <div class="lab-title">50M businesses still need a digital presence</div>
+        </div>
+      </div>
+    </div>
+    <div class="lab-card fade-up">
+      <div class="lab-fallback">
+        <div>
+          <div class="lab-sub" style="margin-bottom:10px;">UPI + WhatsApp Scale</div>
+          <div class="lab-title">10B+ UPI txns/month + 550M WhatsApp users in India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PROJECTS -->
+<section id="work">
+  <div class="section-tag">Portfolio</div>
+  <h2 class="section-title">OUR<br><em>DEPLOYMENTS</em></h2>
+
+  <div class="works-intro">
+    <p class="works-desc">From government-grade IIIT portals and hospital management systems to neighbourhood café websites and AI chatbots — we build with the same ruthless precision across every sector. Every project below is live, battle-tested, and generating results.</p>
+    <div class="works-filter">
+      <button class="filter-btn active">ALL</button>
+      <button class="filter-btn">GOVERNMENT</button>
+      <button class="filter-btn">RESTAURANT</button>
+      <button class="filter-btn">E-COMMERCE</button>
+      <button class="filter-btn">AUTOMATION</button>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+
+    <a href="https://iiitl.ac.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-1 proj-featured fade-up has-cover" aria-label="IIIT Lucknow — open live site">
+      <div class="project-bg proj-cover proj-cover-iiitl"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🏫</span>
+      <div class="proj-badge">GOVERNMENT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Institutional Portal</div>
+        <div class="proj-name">IIIT Lucknow — Institutional Web</div>
+        <p class="proj-desc">Public IIITL site and institutional presence — admissions, academics, and campus information. Enterprise-grade delivery.</p>
+        <span class="proj-live-hint">Visit iiitl.ac.in</span>
+      </div>
+    </a>
+
+    <a href="https://www.lokbandhuhospital.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-2 fade-up has-cover" aria-label="Lok Bandhu Hospital — open live site">
+      <div class="project-bg proj-cover proj-cover-hospital"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🏥</span>
+      <div class="proj-badge">GOVERNMENT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Healthcare Portal</div>
+        <div class="proj-name">Lok Bandhu Combined Hospital</div>
+        <p class="proj-desc">Government hospital portal — departments, leadership, facilities, and citizen-facing healthcare information.</p>
+        <span class="proj-live-hint">Visit lokbandhuhospital.in</span>
+      </div>
+    </a>
+
+    <a href="https://teejayscafe.co.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-3 fade-up has-cover" aria-label="Teejay's Cafe — open live site">
+      <div class="project-bg proj-cover proj-cover-teejays"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">☕</span>
+      <div class="proj-badge">RESTAURANT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">F&B + Storefront</div>
+        <div class="proj-name">Teejay's Cafe &amp; Restaurant</div>
+        <p class="proj-desc">Full café &amp; restaurant web presence — hero storefront, navigation, and commerce-ready layout.</p>
+        <span class="proj-live-hint">Visit teejayscafe.co.in</span>
+      </div>
+    </a>
+
+    <a href="https://www.petperfect.in/" target="_blank" rel="noopener noreferrer" class="project-card proj-4 fade-up has-cover" aria-label="Pet Perfect — open live site">
+      <div class="project-bg proj-cover proj-cover-petperfect"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🐕</span>
+      <div class="proj-badge">PRODUCT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Health &amp; Lifestyle App</div>
+        <div class="proj-name">Pet Perfect</div>
+        <p class="proj-desc">Dog health and care product — marketing site, app positioning, and trust-led UX for pet owners.</p>
+        <span class="proj-live-hint">Visit petperfect.in</span>
+      </div>
+    </a>
+
+    <div class="project-card proj-5 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🤖</span>
+      <div class="proj-badge">AUTOMATION</div>
+      <div class="project-overlay">
+        <div class="proj-tag">AI Chatbot</div>
+        <div class="proj-name">Restaurant WhatsApp Bot</div>
+        <p class="proj-desc">AI chatbot handling 200+ daily queries — menu, orders, reservations, and feedback collection, fully automated.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-6 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">💈</span>
+      <div class="proj-badge">LOCAL BIZ</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Booking System</div>
+        <div class="proj-name">Salon Booking Platform</div>
+        <p class="proj-desc">Online appointment system with WhatsApp reminders, stylist calendar management, and payment integration.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-1 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🏪</span>
+      <div class="proj-badge">RETAIL</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Local Business</div>
+        <div class="proj-name">General Store Digital Pivot</div>
+        <p class="proj-desc">Full digital transformation — website, WhatsApp ordering, inventory tracking, and delivery management.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-2 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🍽️</span>
+      <div class="proj-badge">RESTAURANT</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Restaurant Tech</div>
+        <div class="proj-name">Fine Dining Digital Suite</div>
+        <p class="proj-desc">QR menu system, reservation platform, customer loyalty automation, and kitchen display integration.</p>
+      </div>
+    </div>
+
+    <div class="project-card proj-3 fade-up">
+      <div class="project-bg"></div>
+      <div class="proj-grid-lines"></div>
+      <span class="proj-icon">🔧</span>
+      <div class="proj-badge">AUTOMATION</div>
+      <div class="project-overlay">
+        <div class="proj-tag">Workflow Engine</div>
+        <div class="proj-name">Multi-Branch Ops Automation</div>
+        <p class="proj-desc">Centralized dashboard for multi-location SME — automated reporting, staff comms, and customer follow-ups.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-tag">Business Model</div>
+  <h2 class="section-title">PROJECT FEES.<br><em>RETAINER UPSIDE.</em></h2>
+
+  <div class="pricing-header">
+    <div></div>
+    <p class="pricing-note">
+      No hidden fees. No agency markup. <strong>Fiverr freelancers charge ₹4K–₹12K for a basic chatbot, and ₹6K–₹40K for a restaurant website.</strong> We deliver the complete digital stack — website + chatbot + automation + support — at honest pricing that makes sense for local businesses.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card fade-up">
+      <div class="price-tier">Starter / Launch Package</div>
+      <div class="price-amount"><span>₹</span>8,999</div>
+      <div class="price-usd">≈ $109 USD</div>
+      <div class="price-sub">/ one-time · 3-5 day delivery</div>
+      <ul class="price-features">
+        <li class="included">Custom marketing website</li>
+        <li class="included">Mobile-first, SEO-optimised</li>
+        <li class="included">WhatsApp integration</li>
+        <li>Analytics instrumentation</li>
+        <li>Launch support</li>
+      </ul>
+      <a href="contact.html" class="btn-price btn-price-ghost">Get Started</a>
+    </div>
+
+    <div class="price-card featured fade-up">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Growth / Full Stack Build</div>
+      <div class="price-amount"><span>₹</span>24,999</div>
+      <div class="price-usd">~$300 USD</div>
+      <div class="price-sub">/ one-time · 5-7 day delivery</div>
+      <ul class="price-features">
+        <li class="included">Custom website + conversion funnel</li>
+        <li class="included">WhatsApp AI Chatbot</li>
+        <li class="included">Booking / ecommerce stack</li>
+        <li class="included">Payment Gateway (UPI+Cards)</li>
+        <li class="included">Business automation suite</li>
+        <li>Post-launch retainer optional</li>
+      </ul>
+      <a href="contact.html" class="btn-price btn-price-solid">Deploy Now</a>
+    </div>
+
+    <div class="price-card fade-up">
+      <div class="price-tier">Enterprise / Gov Institutional</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-usd">₹75,000+ / project</div>
+      <div class="price-sub">/ compliance + procurement support</div>
+      <ul class="price-features">
+        <li class="included">Hospital / institutional portals</li>
+        <li class="included">Citizen-facing web applications</li>
+        <li class="included">Compliance documentation support</li>
+        <li class="included">Ongoing retainer available</li>
+        <li>Dedicated account coordination</li>
+      </ul>
+      <a href="contact.html" class="btn-price btn-price-ghost">Get Quote</a>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:32px;border:1px solid rgba(220,20,60,0.15);background:rgba(220,20,60,0.03);display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--crimson);text-transform:uppercase;margin-bottom:8px;">Government & Institutional Projects</div>
+      <div style="font-size:1rem;color:var(--text-dim);line-height:1.7;">Large-scale portals, hospital systems, and institutional platforms are scoped individually. We've delivered for IIIT campuses and government hospitals. <strong style="color:var(--text-main);">Contact us for a custom proposal.</strong></div>
+    </div>
+    <a href="contact.html" class="btn-primary" style="flex-shrink:0;">Request Proposal →</a>
+  </div>
+  <p class="price-fx-note">USD equivalents are approximate for international buyers (indicative rate <strong>₹83 = $1 USD</strong>; adjust quotes with live FX).</p>
+</section>
+
+<!-- WHY TATKRITH -->
+<section id="advantages">
+  <div class="section-tag">Why Tatkrith</div>
+  <h2 class="section-title">FOUR ADVANTAGES.<br><em>NO AGENCY MATCH.</em></h2>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-num">01</div>
+      <div class="service-name">10x faster delivery</div>
+      <p class="service-desc">AI-augmented execution compresses production builds into 3-7 days while holding enterprise quality standards.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">02</div>
+      <div class="service-name">Institutional proof of quality</div>
+      <p class="service-desc">IIIT Lucknow and Lok Bandhu Hospital UP provide procurement-cleared credibility in regulated environments.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">03</div>
+      <div class="service-name">SME-accessible pricing</div>
+      <p class="service-desc">Starting at ₹8,999, built to remove agency overhead and unlock digital infrastructure for local businesses.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-num">04</div>
+      <div class="service-name">Full-stack vertical depth</div>
+      <p class="service-desc">Website, chatbot, commerce, booking, and automation shipped under one roof, integrated by default.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg-text">BUILD</div>
+
+  <div class="section-tag">Start Building</div>
+
+  <div class="contact-layout">
+    <div>
+      <h2 class="section-title">READY TO<br><em>DEPLOY</em><br>IN A WEEK</h2>
+      <div class="contact-big">
+        <div>DEPLOY US.</div>
+        <div class="red">SHIP FAST.</div>
+        <div>SCALE</div>
+        <div>WITH</div>
+        <div>CONFIDENCE.</div>
+      </div>
+
+      <div style="margin-top:40px;display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="color:var(--crimson);font-size:1.3rem;">📱</span>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">WhatsApp &amp; voice</div>
+            <a href="https://wa.me/919517155035" target="_blank" rel="noopener noreferrer" style="font-size:1rem;color:var(--text-main);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(220,20,60,0.4);">+91 95171 55035</a>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="color:var(--crimson);font-size:1.3rem;">📧</span>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">Email</div>
+            <div style="font-size:1rem;color:var(--text-main);font-weight:600;">tatkrith@gmail.com</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span style="color:var(--crimson);font-size:1.3rem;">🌐</span>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;">Response Time</div>
+            <div style="font-size:1rem;color:var(--text-main);font-weight:600;">Within 4 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-form" style="border:1px solid rgba(220,20,60,0.2);padding:32px;background:rgba(220,20,60,0.03);">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--crimson);text-transform:uppercase;margin-bottom:12px;">Lead intake</div>
+        <p style="font-size:1.05rem;color:var(--text-dim);line-height:1.7;margin-bottom:20px;">Investors and clients: use the full contact page — it stores submissions securely (Netlify) so nothing gets lost in WhatsApp noise.</p>
+        <a href="contact.html" class="form-submit" style="display:inline-block;text-align:center;text-decoration:none;line-height:1.3;">Open contact &amp; deploy form →</a>
+        <p style="margin-top:20px;font-size:0.8rem;color:var(--text-dim);font-family:'Share Tech Mono',monospace;">Or message us on WhatsApp: <a href="https://wa.me/919517155035" style="color:var(--crimson-bright);">+91 95171 55035</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">TAT<span>KRITH</span></div>
+      <p class="footer-tagline">
+        ENTERPRISE RIGOUR.<br>
+        STARTUP SPEED.<br>
+        WE BUILD WHAT OTHERS CAN'T.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Website Design</a></li>
+        <li><a href="#services">WhatsApp Chatbots</a></li>
+        <li><a href="#services">E-Commerce</a></li>
+        <li><a href="#services">Booking Systems</a></li>
+        <li><a href="#services">Automation</a></li>
       </ul>
     </div>
-  </nav>
 
-  <section id="cover" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Investor Deck 2026 // Tatkrith Solutions</div>
-      <h1 class="title">WE BUILD<br><span class="accent">WHAT OTHERS</span><br>CAN'T</h1>
-      <p class="lede"><b>Enterprise-grade digital infrastructure for India's 63 million SMEs.</b> Delivered in days, not months.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="num">40+</div><div class="lbl">Live Deployments</div></div>
-        <div class="hero-stat"><div class="num">5</div><div class="lbl">Verticals Served</div></div>
-        <div class="hero-stat"><div class="num">3–7</div><div class="lbl">Day Launch Cycle</div></div>
-        <div class="hero-stat"><div class="num">₹8,999</div><div class="lbl">Starting Price</div></div>
-      </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
     </div>
-  </section>
 
-  <section id="problem" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// The Problem</div>
-      <h2 class="title">63M SMEs<br><span class="accent">DIGITAL GAP</span></h2>
-      <div class="cards">
-        <div class="card"><div class="n">01</div><h4>Agencies are too slow</h4><p>Traditional studios take 3–6 months. By launch, the brief is stale.</p></div>
-        <div class="card"><div class="n">02</div><h4>Templates don't convert</h4><p>Generic builders miss SEO, operations, and conversion systems.</p></div>
-        <div class="card"><div class="n">03</div><h4>Enterprise tools are expensive</h4><p>Bots, booking, automation stacks are priced for large MNCs.</p></div>
-        <div class="card"><div class="n">04</div><h4>Government UX lags</h4><p>Citizen-facing portals remain legacy-heavy and hard to use.</p></div>
-      </div>
+    <div>
+      <div class="footer-col-title">We Serve</div>
+      <ul class="footer-links">
+        <li><a href="#">Cafés & Restaurants</a></li>
+        <li><a href="#">Clothing Stores</a></li>
+        <li><a href="#">Salons & Spas</a></li>
+        <li><a href="#">Clinics & Hospitals</a></li>
+        <li><a href="#">Government Bodies</a></li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <section id="solution" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Our Solution</div>
-      <h2 class="title">ENTERPRISE RIGOUR<br><span class="accent">STARTUP SPEED</span></h2>
-      <div class="grid-2">
-        <div class="panel">
-          <h3>Enterprise rigour. Startup speed.</h3>
-          <p>Tatkrith is a full-stack digital operations squad that designs, builds, and deploys production-grade systems across commercial and institutional environments.</p>
-          <div class="metric-list">
-            <div class="metric-item"><b>01 AI-augmented build squad</b><span>12+ builders using parallel AI workflows.</span></div>
-            <div class="metric-item"><b>02 Custom builds, not templates</b><span>Purpose-built by vertical, audience, and goals.</span></div>
-            <div class="metric-item"><b>03 Integrated automation</b><span>WhatsApp, UPI, booking, CRM shipped together.</span></div>
-            <div class="metric-item"><b>04 Government-grade compliance</b><span>Validated by IIIT Lucknow and Lok Bandhu Hospital.</span></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Build engine</h3>
-          <p><code>tatkrit init --project</code><br><code>deploy --stack website+bot</code><br><code>automate --workflows all</code></p>
-          <p style="margin-top:10px;">Status: <b>LIVE</b><br>Build time: <b>3-7 days</b></p>
-        </div>
-      </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 TATKRIT. ALL RIGHTS RESERVED. BUILT WITH AI. DELIVERED WITH PRECISION. <span style="opacity:0.55;font-size:0.85em;">· Live from GitHub → Netlify</span></div>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="https://wa.me/919517155035" target="_blank" rel="noopener noreferrer">WhatsApp +91 95171 55035</a>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <section id="services" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Products & Services</div>
-      <h2 class="title">FIVE VERTICALS<br><span class="accent">ONE SQUAD</span></h2>
-      <div class="cards">
-        <div class="card"><div class="n">Marketing Website</div><p>Cinematic brochure experiences, SEO-native and conversion-focused.</p></div>
-        <div class="card"><div class="n">WhatsApp AI Chatbot</div><p>Order intake, support, and bookings inside WhatsApp.</p></div>
-        <div class="card"><div class="n">E-Commerce Store</div><p>Catalog, UPI/cards/COD, inventory, order flow.</p></div>
-        <div class="card"><div class="n">Booking System</div><p>Reservations for restaurants, salons, clinics.</p></div>
-        <div class="card"><div class="n">Business Automation</div><p>Invoicing, follow-up, reviews, CRM workflows.</p></div>
-        <div class="card"><div class="n">Gov / Institutional Portals</div><p>Citizen-facing platforms with compliance support.</p></div>
-      </div>
-    </div>
-  </section>
+<script>
+// CUSTOM CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
 
-  <section id="traction" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Traction & Portfolio</div>
-      <h2 class="title">LIVE PROOF<br><span class="accent">NOT CLAIMS</span></h2>
-      <div class="portfolio">
-        <a class="project" href="https://iiitl.ac.in/" target="_blank" rel="noopener noreferrer">
-          <div class="project-image" style="background-image:url('assets/portfolio-iiitl.png')"></div>
-          <div class="project-body"><div class="tag">Government Institution</div><h4>IIIT Lucknow</h4><p>Institutional web presence with high public trust expectations.</p></div>
-        </a>
-        <a class="project" href="https://www.lokbandhuhospital.in/" target="_blank" rel="noopener noreferrer">
-          <div class="project-image" style="background-image:url('assets/portfolio-lbrn-hospital.png')"></div>
-          <div class="project-body"><div class="tag">UP Government</div><h4>Lok Bandhu Hospital</h4><p>Citizen-facing healthcare portal for a state-run institution.</p></div>
-        </a>
-        <a class="project" href="https://teejayscafe.co.in/" target="_blank" rel="noopener noreferrer">
-          <div class="project-image" style="background-image:url('assets/portfolio-teejays.png')"></div>
-          <div class="project-body"><div class="tag">F&B Commerce</div><h4>Teejay's Cafe</h4><p>Restaurant storefront and digital order ecosystem.</p></div>
-        </a>
-        <a class="project" href="https://www.petperfect.in/" target="_blank" rel="noopener noreferrer">
-          <div class="project-image" style="background-image:url('assets/portfolio-petperfect.png')"></div>
-          <div class="project-body"><div class="tag">Consumer Platform</div><h4>Pet Perfect</h4><p>Product-led growth site for pet health and engagement.</p></div>
-        </a>
-      </div>
-    </div>
-  </section>
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
 
-  <section id="model" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Business Model</div>
-      <h2 class="title">PROJECT FEES<br><span class="accent">RETAINER UPSIDE</span></h2>
-      <div class="pricing">
-        <div class="price">
-          <h4>Starter / Launch</h4>
-          <div class="amount">₹8,999</div>
-          <div class="usd">~$108 USD · 3–5 day delivery</div>
-          <ul><li>Custom marketing website</li><li>SEO + mobile-first</li><li>WhatsApp integration</li></ul>
-        </div>
-        <div class="price">
-          <h4>Growth / Full Stack</h4>
-          <div class="amount">₹24,999</div>
-          <div class="usd">~$300 USD · 5–7 day delivery</div>
-          <ul><li>Ecommerce or booking</li><li>WhatsApp AI chatbot</li><li>UPI + cards + automation</li></ul>
-        </div>
-        <div class="price">
-          <h4>Enterprise / Gov</h4>
-          <div class="amount">Custom</div>
-          <div class="usd">₹75,000+ / project</div>
-          <ul><li>Institutional portals</li><li>Compliance + procurement support</li><li>Retainer available</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
 
-  <section id="market" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Market Opportunity</div>
-      <h2 class="title">₹50,000 CRORE<br><span class="accent">BY 2027</span></h2>
-      <div class="grid-2">
-        <div class="panel">
-          <h3>India SME digitisation gap</h3>
-          <p>SMEs contribute 30% of GDP, yet digital penetration is below 20%.</p>
-          <div class="metric-list">
-            <div class="metric-item"><b>63M SMEs</b><span>Only ~20% digitised.</span></div>
-            <div class="metric-item"><b>10B+ UPI txns/month</b><span>Payments infra is ready.</span></div>
-            <div class="metric-item"><b>550M WhatsApp users</b><span>Native commerce channel at scale.</span></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Institutional tailwinds</h3>
-          <p>Government modernization mandates and Digital India are expanding demand for compliant, fast web teams.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+document.querySelectorAll('a, button, .service-card, .project-card, .lab-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+    ring.style.width = '56px';
+    ring.style.height = '56px';
+    ring.style.borderColor = 'var(--crimson-bright)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '12px';
+    cursor.style.height = '12px';
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+    ring.style.borderColor = 'var(--crimson)';
+  });
+});
 
-  <section id="why" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Why Tatkrith</div>
-      <h2 class="title">FOUR ADVANTAGES<br><span class="accent">NO AGENCY MATCH</span></h2>
-      <div class="cards">
-        <div class="card"><div class="n">01</div><h4>10x faster delivery</h4><p>Enterprise quality in 3–7 day cycles.</p></div>
-        <div class="card"><div class="n">02</div><h4>Government proof</h4><p>IIIT Lucknow + Lok Bandhu credibility.</p></div>
-        <div class="card"><div class="n">03</div><h4>SME-accessible pricing</h4><p>From ₹8,999 with clear ROI focus.</p></div>
-        <div class="card"><div class="n">04</div><h4>Full-stack depth</h4><p>Web, bot, commerce, booking, automation in one squad.</p></div>
-      </div>
-    </div>
-  </section>
+// SCROLL PROGRESS BAR
+const scrollBar = document.getElementById('scrollBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollTop / docHeight;
+  scrollBar.style.transform = `scaleX(${progress})`;
+});
 
-  <section id="team" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// The Team</div>
-      <h2 class="title">BUILDERS<br><span class="accent">NOT MANAGERS</span></h2>
-      <div class="cards">
-        <div class="card"><div class="n">FE</div><h4>Frontend Lead</h4><p>Web UX, performance, motion systems.</p></div>
-        <div class="card"><div class="n">BE</div><h4>Backend Lead</h4><p>Node systems, APIs, payments, data.</p></div>
-        <div class="card"><div class="n">AI</div><h4>Automation Lead</h4><p>WhatsApp API, LLM workflows, orchestration.</p></div>
-        <div class="card"><div class="n">GV</div><h4>Gov Verticals</h4><p>Institutional procurement and compliance.</p></div>
-      </div>
-    </div>
-  </section>
+// FADE-IN ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  <section id="contact" class="deck-section">
-    <div class="deck-inner">
-      <div class="eyebrow">// Ready to Deploy</div>
-      <h2 class="title">DEPLOY US<br><span class="accent">SHIP IN A WEEK</span></h2>
-      <div class="cta-block">
-        <p>Whether you're an investor, potential client, or institutional partner — start the conversation now.</p>
-        <a href="contact.html">Open contact form</a>
-        <a href="mailto:tatkrith@gmail.com">tatkrith@gmail.com</a>
-        <a href="https://wa.me/919517155035" target="_blank" rel="noopener noreferrer">WhatsApp: +91 95171 55035</a>
-        <a href="https://tatkritsolutions.netlify.app/" target="_blank" rel="noopener noreferrer">tatkritsolutions.netlify.app</a>
-      </div>
-    </div>
-  </section>
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.dataset.delay = (i % 3) * 100;
+  observer.observe(el);
+});
 
-  <footer>
-    © 2026 TATKRITH SOLUTIONS · Investor Deck Web Experience
-  </footer>
+// FILTER BUTTONS
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// PARALLAX on hero glow
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const glow = document.querySelector('.hero-glow');
+  if (glow) glow.style.transform = `translateY(calc(-50% + ${scrolled * 0.3}px))`;
+});
+
+// COUNTER ANIMATION for stats
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const target = parseInt(el.textContent);
+    const suffix = el.textContent.replace(/[0-9]/g, '');
+    if (isNaN(target)) return;
+    let current = 0;
+    const increment = target / 40;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current) + suffix;
+      }
+    }, 30);
+  });
+}
+
+// Trigger counter when hero is visible
+const heroObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    setTimeout(animateCounters, 800);
+    heroObserver.disconnect();
+  }
+}, { threshold: 0.3 });
+heroObserver.observe(document.querySelector('.hero'));
+
+// GLITCH effect on title periodically
+function glitchTitle() {
+  const lines = document.querySelectorAll('.hero-title .line-2, .hero-title .line-3');
+  lines.forEach(line => {
+    line.style.transform = `translateX(${(Math.random() - 0.5) * 6}px)`;
+    setTimeout(() => { line.style.transform = 'translateX(0)'; }, 80);
+  });
+}
+setInterval(glitchTitle, 4000);
+</script>
+<script src="js/tatkrit.js"></script>
 </body>
 </html>
